@@ -16,14 +16,27 @@ The plugin **does not change the Samsung home-screen/system app icon**. It does 
 ## Installation
 
 1. Open Lampa → **Настройки** → **Плагины / Расширения** → **Добавить плагин**.
-2. Paste the **direct HTTPS URL to the `.js` file**, not the GitHub repository page:
+2. Paste the **TV-compatible JavaScript CDN URL** (not the GitHub `raw.githubusercontent.com` address):
 
 ```text
-https://raw.githubusercontent.com/DoubleGGameRR/Halloween-Theme-for-Lampa/main/halloween-theme.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-theme.js
 ```
 
-3. Confirm and restart Lampa if asked.
-4. Open Settings → **Halloween Premium** to adjust the theme.
+3. **Remove any previously installed `raw.githubusercontent.com/DoubleGGameRR/Halloween-Theme-for-Lampa/...` plugin URL** from the plugins list; otherwise Lampa will keep showing the old failed URL when starting.
+4. Add the new jsDelivr URL, confirm, and **fully restart Lampa**.
+5. Open Settings → **Halloween Premium** to adjust the theme.
+
+### Why not use GitHub Raw directly on TV?
+
+GitHub Raw sends the file with the plain-text MIME type. Some Tizen/Chromium-based TV apps block it when loaded as a `<script>`. jsDelivr serves the same public GitHub file with the correct JavaScript Content-Type. The repository remains the single source of truth.
+
+Alternative CDN endpoint if jsDelivr is temporarily unavailable:
+
+```text
+https://raw.githack.com/DoubleGGameRR/Halloween-Theme-for-Lampa/main/halloween-theme.js
+```
+
+Both CDN URLs reference the public repository. CDN caches can delay plugin updates.
 
 ## TV compatibility
 

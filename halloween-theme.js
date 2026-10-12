@@ -1,6 +1,6 @@
 /*
  * Halloween Theme for Lampa — Premium Edition
- * Version: 1.2.0 | 2026-10-12
+ * Version: 1.3.0 | 2026-10-12
  * A lightweight, ES5-compatible visual theme for Lampa on TVs.
  * No external scripts, fonts, images, tracking or network requests.
  * License: MIT
@@ -13,6 +13,7 @@
   var STYLE_ID = 'hpl-premium-styles';
   var DECOR_ID = 'hpl-premium-decor';
   var TOP_ID = 'hpl-premium-header-scene';
+  var ATM_ID = 'hpl-mystic-atmosphere';
   var LOGO_CLASS = 'hpl-pumpkin-logo';
   var ROOT_CLASS = 'hpl-premium-on';
   var settingsRegistered = false;
@@ -194,6 +195,93 @@
     'html:not(.hpl-premium-on) .head__logo-icon .hpl-pumpkin-logo,html.hpl-premium-on:not(.hpl-logo-enabled) .head__logo-icon .hpl-pumpkin-logo{display:none!important}\n' +
     '@media(prefers-reduced-motion:reduce){html #hpl-premium-header-scene .hpl-header-bats,html #hpl-premium-header-scene .hpl-header-mist{animation:none!important}}\n' ;
 
+
+  // Halloween 1.3: small decorative shapes only; no images, scripts or requests.
+  var castleSceneSvg = '' +
+    '<svg class="hpl-haunted-header-svg" viewBox="0 0 570 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
+    '<g fill="#171020" stroke="#9b5dd1" stroke-width="1.2" opacity=".78">' +
+    '<path d="M259 111V92H268V73L274 66L280 73V85H288V57L298 43L308 57V86H318V71L324 63L330 71V92H340V111Z"/>' +
+    '<path d="M264 85H335V112H264Z" stroke="none"/>' +
+    '<path d="M290 110V96Q298 83 306 96V110Z" fill="#e6a34b" opacity=".58"/>' +
+    '<path d="M275 78V83M325 78V83M298 65V70" stroke="#f6ac55" stroke-width="2.6"/>' +
+    '<path d="M245 113Q276 104 299 110Q330 103 353 113" fill="none" stroke="#a75dbe" opacity=".5"/>' +
+    '</g>' +
+    '<g class="hpl-header-witch" fill="#171020" stroke="#b884ea" stroke-width=".65" opacity=".88">' +
+    '<path d="M119 31L131 30L136 21L142 33L160 37L141 42L135 49L134 39L119 38Z"/>' +
+    '<path d="M126 40Q138 38 146 46L151 50L145 53L137 46L127 48Z"/>' +
+    '<path d="M107 54L161 45L165 47L108 57Z" fill="#cb86e9" stroke="none" opacity=".9"/>' +
+    '</g></svg>';
+
+  var ghostSvg = '' +
+    '<svg class="hpl-mystic-ghost-svg" viewBox="0 0 140 156" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
+    '<defs><linearGradient id="hpl-ghost-skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e3d7ff" stop-opacity=".93"/><stop offset=".56" stop-color="#ba86e8" stop-opacity=".73"/><stop offset="1" stop-color="#7c4db0" stop-opacity=".22"/></linearGradient></defs>' +
+    '<path d="M26 128V71C26 41 44 20 70 20C96 20 114 41 114 71V132L99 120L85 135L72 121L57 139L42 120L26 128Z" fill="url(#hpl-ghost-skin)" stroke="#d8b0ff" stroke-width="2.8"/>' +
+    '<path d="M49 71Q54 60 60 71Q59 84 53 83Q48 80 49 71Z M81 71Q87 60 92 71Q92 84 86 83Q81 80 81 71Z" fill="#241038"/>' +
+    '<ellipse cx="71" cy="99" rx="7" ry="10" fill="#2a103a"/>' +
+    '<path d="M18 73Q13 51 31 35M112 37Q130 46 125 73" fill="none" stroke="#b886ec" stroke-width="2" opacity=".32" stroke-linecap="round"/>' +
+    '</svg>';
+
+  function injectMysticAtmosphere() {
+    if (!document.body || document.getElementById(ATM_ID)) return;
+    var atmosphere = document.createElement('div');
+    atmosphere.id = ATM_ID;
+    atmosphere.setAttribute('aria-hidden', 'true');
+    atmosphere.innerHTML = '<div class="hpl-haze hpl-haze--top"></div>' +
+      '<div class="hpl-haze hpl-haze--floor"></div>' +
+      '<div class="hpl-embers"></div>' +
+      '<div class="hpl-mystic-ghost">' + ghostSvg + '</div>';
+    document.body.appendChild(atmosphere);
+  }
+
+  // 1.3 Mystic Halloween extras: CSS-only, pointer-events: none, scoped to themed UI.
+  css += [
+    "html.hpl-premium-on.hpl-atmosphere-enabled #hpl-mystic-atmosphere{display:block}\n",
+    "html #hpl-mystic-atmosphere{display:none;position:fixed;top:0;right:0;bottom:0;left:0;pointer-events:none;z-index:3;overflow:hidden}\n",
+    "html #hpl-mystic-atmosphere .hpl-haze{position:absolute;left:0;right:0;pointer-events:none}\n",
+    "html #hpl-mystic-atmosphere .hpl-haze--top{top:0;height:26%;background:radial-gradient(ellipse at 8% 4%,rgba(143,66,205,.17),transparent 54%),radial-gradient(ellipse at 84% 0,rgba(255,110,29,.11),transparent 50%)}\n",
+    "html #hpl-mystic-atmosphere .hpl-haze--floor{bottom:0;height:28%;background:radial-gradient(ellipse at 38% 100%,rgba(140,67,205,.14),transparent 65%),radial-gradient(ellipse at 90% 95%,rgba(248,108,22,.10),transparent 55%)}\n",
+    "html #hpl-mystic-atmosphere .hpl-embers{position:absolute;inset:0;background:radial-gradient(circle at 5% 39%,rgba(255,157,61,.85) 0 1.2px,transparent 2.5px),radial-gradient(circle at 92% 32%,rgba(185,124,255,.8) 0 1.5px,transparent 3px),radial-gradient(circle at 12% 85%,rgba(255,163,71,.8) 0 1.1px,transparent 2.7px),radial-gradient(circle at 86% 76%,rgba(255,150,42,.72) 0 1.2px,transparent 2.9px);opacity:.5}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-eco) #hpl-mystic-atmosphere .hpl-haze--floor{animation:hpl-fogbreath 18s ease-in-out infinite}\n",
+    "@keyframes hpl-fogbreath{0%,100%{opacity:.45;transform:translate3d(-1%,0,0)}50%{opacity:.9;transform:translate3d(1%,0,0)}}\n",
+    "html #hpl-mystic-atmosphere .hpl-mystic-ghost{display:none;position:absolute;left:0;bottom:1%;width:6em;height:7.2em;opacity:0;transform:translate3d(-120%,0,0)}\n",
+    "html #hpl-mystic-atmosphere .hpl-mystic-ghost-svg{width:100%;height:100%;filter:drop-shadow(0 0 .5em rgba(177,110,241,.22))}\n",
+    "html.hpl-premium-on.hpl-atmosphere-enabled.hpl-ghost-enabled #hpl-mystic-atmosphere .hpl-mystic-ghost{display:block}\n",
+    "html.hpl-premium-on.hpl-atmosphere-enabled.hpl-ghost-enabled.hpl-motion:not(.hpl-eco) #hpl-mystic-atmosphere .hpl-mystic-ghost{animation:hpl-ghostpeek 24s ease-in-out infinite}\n",
+    "@keyframes hpl-ghostpeek{0%,63%,100%{opacity:0;transform:translate3d(-120%,0,0)}68%{opacity:.6;transform:translate3d(-30%,0,0)}82%{opacity:.6;transform:translate3d(-30%,-.4em,0)}88%{opacity:0;transform:translate3d(-120%,0,0)}}\n",
+    "html.hpl-premium-on.hpl-eco #hpl-mystic-atmosphere .hpl-mystic-ghost{opacity:.24;transform:translate3d(-65%,0,0);animation:none!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] #hpl-mystic-atmosphere .hpl-haze--top{opacity:.4}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] #hpl-mystic-atmosphere .hpl-mystic-ghost{display:none!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] #hpl-mystic-atmosphere .hpl-haze--floor{opacity:.96}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] #hpl-mystic-atmosphere .hpl-mystic-ghost-svg{filter:drop-shadow(0 0 .65em rgba(255,74,83,.22))}\n",
+    "html #hpl-premium-header-scene .hpl-haunted-header-svg{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}\n",
+    "html.hpl-premium-on.hpl-header-enabled.hpl-castle-enabled #hpl-premium-header-scene .hpl-haunted-header-svg{display:block}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-eco) #hpl-premium-header-scene .hpl-header-witch{animation:hpl-witchfly 19s ease-in-out infinite}\n",
+    "@keyframes hpl-witchfly{0%,100%{transform:translate3d(-9px,3px,0);opacity:.55}50%{transform:translate3d(18px,-8px,0);opacity:.93}}\n",
+    "html.hpl-premium-on.hpl-eco #hpl-premium-header-scene .hpl-header-bats,html.hpl-premium-on.hpl-eco #hpl-premium-header-scene .hpl-header-mist,html.hpl-premium-on.hpl-eco #hpl-premium-header-scene .hpl-header-witch,html.hpl-premium-on.hpl-eco #hpl-premium-decor .hpl-spider-svg{animation:none!important}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view{box-shadow:0 0 0 .13em #ff982f,0 0 0 .29em rgba(158,72,219,.53),0 0 1.25em rgba(175,85,247,.4),0 0 2.2em rgba(255,116,34,.18)!important}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view:after,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view:after{border:.18em solid rgba(255,177,69,.9)!important;border-radius:.75em!important;box-shadow:0 0 .8em rgba(183,92,243,.34)!important;z-index:1!important;top:0!important;right:0!important;bottom:0!important;left:0!important}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view:before,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view:before{content:\"\";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle at 10% 10%,#ffe3a3 0 1px,transparent 3px),radial-gradient(circle at 90% 14%,#d5a2ff 0 1.4px,transparent 4px),radial-gradient(circle at 83% 88%,#ffd07d 0 1.2px,transparent 4px),radial-gradient(circle at 9% 83%,#dfadff 0 1px,transparent 3px);opacity:.88}\n",
+    "html.hpl-premium-on.hpl-motion.hpl-magic-enabled.hpl-full-effects .card.focus .card__view:before{animation:hpl-card-spark 2.8s ease-in-out infinite}\n",
+    "@keyframes hpl-card-spark{0%,100%{opacity:.65}50%{opacity:1}}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .selectbox__content,html.hpl-premium-on.hpl-windows-enabled .modal__content{background:linear-gradient(155deg,#261437 0%,#1c1229 52%,#120e1e 100%)!important;border:1px solid rgba(189,105,249,.28)!important;box-shadow:-1em 0 2em rgba(7,4,15,.36)!important;color:#f9efff}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .selectbox-item.focus,html.hpl-premium-on.hpl-windows-enabled .modal__button.focus{color:#fff8ef!important;background:linear-gradient(90deg,rgba(152,62,224,.48),rgba(255,131,27,.21))!important;box-shadow:inset .2em 0 #ff9229!important}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .selectbox__title,html.hpl-premium-on.hpl-windows-enabled .modal__title{color:#fff2ff!important;text-shadow:0 0 .5em rgba(184,111,247,.18)}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .search__input,html.hpl-premium-on.hpl-windows-enabled .search-box__keypad{background:rgba(44,22,60,.3)!important;border-radius:.8em}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .search-source.focus,html.hpl-premium-on.hpl-windows-enabled .search-history-key.focus{background:rgba(166,77,232,.32)!important;color:#ffe1a6!important;box-shadow:inset .13em 0 #ff9229}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .full-start__title,html.hpl-premium-on.hpl-windows-enabled .full-start-new__title{color:#fff6fb!important;text-shadow:0 0 .5em rgba(181,102,230,.23)}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .full-start__poster.focus img,html.hpl-premium-on.hpl-windows-enabled .full-start-new__poster.focus img{box-shadow:0 0 0 .24em #ff942e,0 0 1.1em rgba(168,72,223,.35)!important}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .full-descr__tag.focus,html.hpl-premium-on.hpl-windows-enabled .full-episode.focus,html.hpl-premium-on.hpl-windows-enabled .episode.focus{border-color:#ff942e!important;box-shadow:0 0 0 .13em #ff942e,0 0 .8em rgba(185,90,255,.26)!important;color:#fff3e2!important}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .full-episode.focus::after{border-color:#ff942e!important}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .season__title,html.hpl-premium-on.hpl-windows-enabled .full-descr__line-name{color:#f6d7ff}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .modal__button{background:rgba(151,76,216,.14)!important;border:1px solid rgba(206,135,255,.23)!important}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .settings-input__content{background-color:#20132d!important}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .selectbox-item__subtitle{color:#dcc3ea}\n",
+    "html.hpl-premium-on.hpl-windows-enabled .modal__content:before{content:\"\";position:absolute;top:0;left:6%;right:6%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,157,60,.42),rgba(187,108,248,.42),transparent);pointer-events:none}\n",
+    "html.hpl-premium-on body.settings--open #hpl-mystic-atmosphere .hpl-mystic-ghost,html.hpl-premium-on body.selectbox--open #hpl-mystic-atmosphere .hpl-mystic-ghost{display:none!important}\n",
+    "@media(max-width:800px){html #hpl-mystic-atmosphere .hpl-mystic-ghost{width:3.4em;height:4.5em}html #hpl-premium-header-scene .hpl-haunted-header-svg{opacity:.56}}\n",
+    "@media(prefers-reduced-motion:reduce){html #hpl-mystic-atmosphere .hpl-mystic-ghost{display:none!important}html #hpl-mystic-atmosphere .hpl-haze,html #hpl-premium-header-scene .hpl-header-witch,html.hpl-premium-on .card__view:before{animation:none!important}}\n"
+  ].join('');
+
   function injectStyle() {
     if (document.getElementById(STYLE_ID)) return;
     var style = document.createElement('style');
@@ -217,7 +305,7 @@
       var scene = document.createElement('div');
       scene.id = TOP_ID;
       scene.setAttribute('aria-hidden', 'true');
-      scene.innerHTML = headerSceneSvg;
+      scene.innerHTML = headerSceneSvg + castleSceneSvg;
       document.body.appendChild(scene);
     }
   }
@@ -251,10 +339,23 @@
     root.classList.toggle('hpl-motion', on && enabled('motion', true));
     root.classList.toggle('hpl-logo-enabled', on && enabled('logo', true));
     root.classList.toggle('hpl-header-enabled', on && enabled('header_decor', true));
+    root.classList.toggle('hpl-castle-enabled', on && enabled('castle', true));
+    root.classList.toggle('hpl-atmosphere-enabled', on && enabled('atmosphere', true));
+    root.classList.toggle('hpl-ghost-enabled', on && enabled('apparitions', true));
+    root.classList.toggle('hpl-magic-enabled', on && enabled('magic', true));
+    root.classList.toggle('hpl-windows-enabled', on && enabled('windows', true));
+    var mood = get('mode', 'mystic');
+    if (mood !== 'cozy' && mood !== 'horror') mood = 'mystic';
+    root.setAttribute('data-hpl-mode', mood);
+    var performance = get('performance', 'balanced');
+    if (performance !== 'eco' && performance !== 'full') performance = 'balanced';
+    root.classList.toggle('hpl-eco', performance === 'eco');
+    root.classList.toggle('hpl-full-effects', performance === 'full');
     root.setAttribute('data-hpl-palette', palette);
     if (on) {
       injectStyle();
       injectDecor();
+      injectMysticAtmosphere();
       injectLogo();
     }
   }
@@ -315,6 +416,52 @@
         field: {name: 'Луна, летучие мыши и туман', description: 'Лёгкий декор в центре верхней части экрана.'},
         onChange: onChange
       });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'mode', type: 'select',
+          values: {'mystic':'Mystic Halloween', 'cozy':'Cozy Halloween', 'horror':'Horror Halloween'},
+          'default': 'mystic'},
+        field: {name: 'Атмосфера', description: 'Mystic: мистическая луна, туман, призрак и фиолетовые огни.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'atmosphere', type: 'trigger', 'default': true},
+        field: {name: 'Живой мистический фон', description: 'Прозрачная дымка и мягкие огоньки по краям экрана.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'apparitions', type: 'trigger', 'default': true},
+        field: {name: 'Призрак на экране', description: 'Редко выглядывает из-за края, не мешает управлению.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'magic', type: 'trigger', 'default': true},
+        field: {name: 'Магические карточки', description: 'Двойной контур и искры вокруг выбранного постера.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'castle', type: 'trigger', 'default': true},
+        field: {name: 'Замок и ведьма в шапке', description: 'Мистический замок и ведьма на метле рядом с луной.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'windows', type: 'trigger', 'default': true},
+        field: {name: 'Тематические окна', description: 'Единый стиль поиска, фильма, сезонов и всплывающих окон.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'performance', type: 'select',
+          values: {'balanced':'Сбалансировано (Samsung)', 'eco':'Экономный', 'full':'Больше анимации'},
+          'default': 'balanced'},
+        field: {name: 'Производительность', description: 'Экономный режим отключает движение декоративных объектов.'},
+        onChange: onChange
+      });
     } catch (err) {
       // The theme should still run if a fork of Lampa has an incompatible Settings API.
       if (window.console && console.warn) console.warn('[Halloween Premium] Settings API:', err);
@@ -333,7 +480,7 @@
         Lampa.Listener.follow('activity', function () { setTimeout(injectLogo, 0); });
       }
     } catch (ignore) {}
-    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.2.0 ready');
+    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.3.0 ready');
   }
 
   function bootstrap() {

@@ -1,6 +1,6 @@
 /*
  * Halloween Theme for Lampa — Premium Edition
- * Version: 1.3.0 | 2026-10-12
+ * Version: 1.3.1 | 2026-10-12
  * A lightweight, ES5-compatible visual theme for Lampa on TVs.
  * No external scripts, fonts, images, tracking or network requests.
  * License: MIT
@@ -197,20 +197,20 @@
 
 
   // Halloween 1.3: small decorative shapes only; no images, scripts or requests.
+  // Premium nocturnal header instead of the old boxy castle and witch.
+  // An airy moonlit forest silhouette, subtle starfield and bats.
   var castleSceneSvg = '' +
     '<svg class="hpl-haunted-header-svg" viewBox="0 0 570 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
-    '<g fill="#171020" stroke="#9b5dd1" stroke-width="1.2" opacity=".78">' +
-    '<path d="M259 111V92H268V73L274 66L280 73V85H288V57L298 43L308 57V86H318V71L324 63L330 71V92H340V111Z"/>' +
-    '<path d="M264 85H335V112H264Z" stroke="none"/>' +
-    '<path d="M290 110V96Q298 83 306 96V110Z" fill="#e6a34b" opacity=".58"/>' +
-    '<path d="M275 78V83M325 78V83M298 65V70" stroke="#f6ac55" stroke-width="2.6"/>' +
-    '<path d="M245 113Q276 104 299 110Q330 103 353 113" fill="none" stroke="#a75dbe" opacity=".5"/>' +
+    '<defs><linearGradient id="hpl-forest-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#49305d" stop-opacity=".52"/><stop offset="1" stop-color="#150d20" stop-opacity=".94"/></linearGradient><radialGradient id="hpl-forest-halo"><stop stop-color="#eec8ff" stop-opacity=".27"/><stop offset="1" stop-color="#b06eff" stop-opacity="0"/></radialGradient></defs>' +
+    '<circle cx="285" cy="49" r="59" fill="url(#hpl-forest-halo)"/>' +
+    '<g fill="none" stroke="#b783ed" stroke-width="1" opacity=".47"><path d="M63 78Q154 57 221 80M344 78Q420 59 508 76" stroke-dasharray="2 9"/></g>' +
+    '<g fill="url(#hpl-forest-fill)" stroke="#ae72de" stroke-width="1.1" opacity=".74">' +
+    '<path d="M0 114Q21 98 44 108L49 68L40 52L49 55L55 65L62 43L70 35L65 57L60 77L75 65L91 63L76 72L63 86L60 109Q91 95 117 111L139 109L145 75L131 65L146 68L155 43L150 68L169 57L184 58L166 64L159 82L162 109L199 115Z"/>' +
+    '<path d="M570 114Q549 98 526 108L521 68L530 52L521 55L515 65L508 43L500 35L505 57L510 77L495 65L479 63L494 72L507 86L510 109Q479 95 453 111L431 109L425 75L439 65L424 68L415 43L420 68L401 57L386 58L404 64L411 82L408 109L371 115Z"/>' +
     '</g>' +
-    '<g class="hpl-header-witch" fill="#171020" stroke="#b884ea" stroke-width=".65" opacity=".88">' +
-    '<path d="M119 31L131 30L136 21L142 33L160 37L141 42L135 49L134 39L119 38Z"/>' +
-    '<path d="M126 40Q138 38 146 46L151 50L145 53L137 46L127 48Z"/>' +
-    '<path d="M107 54L161 45L165 47L108 57Z" fill="#cb86e9" stroke="none" opacity=".9"/>' +
-    '</g></svg>';
+    '<g fill="#d9a9ff" opacity=".43"><circle cx="204" cy="31" r="1.5"/><circle cx="369" cy="18" r="1.7"/><circle cx="444" cy="40" r="1.2"/><circle cx="131" cy="23" r="1.1"/></g>' +
+    '<g fill="none" stroke="#ac74e6" stroke-width="1" opacity=".4"><path d="M16 114Q285 86 554 114"/></g>' +
+    '</svg>';
 
   var ghostSvg = '' +
     '<svg class="hpl-mystic-ghost-svg" viewBox="0 0 140 156" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
@@ -293,6 +293,36 @@
     "html.hpl-premium-on.hpl-motion:not(.hpl-eco):not(.hpl-full-effects) #hpl-premium-header-scene .hpl-header-witch{animation:hpl-witchfly 26s ease-in-out infinite}\n",
     "html.hpl-premium-on.hpl-motion:not(.hpl-eco):not(.hpl-full-effects) #hpl-mystic-atmosphere .hpl-haze--floor{animation:hpl-fogbreath 25s ease-in-out infinite}\n",
     "html.hpl-premium-on body.settings--open #hpl-mystic-atmosphere .hpl-mystic-ghost,html.hpl-premium-on body.selectbox--open #hpl-mystic-atmosphere .hpl-mystic-ghost{animation:none!important;display:none!important}\n"
+  ].join('');
+
+  // Mode changes are deliberately visible across the entire navigation system;
+  // larger focus particles stay visible at TV viewing distance.
+  css += [
+    "html.hpl-premium-on[data-hpl-mode=\"mystic\"] .menu,html.hpl-premium-on[data-hpl-mode=\"mystic\"] .settings__content{background:linear-gradient(155deg,#35164b 0%,#21102f 54%,#110b1e 100%)!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"mystic\"] .head{background:linear-gradient(90deg,rgba(26,11,42,.91),rgba(47,18,67,.81),rgba(27,12,41,.91))!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"]{--hpl-orange:#ffac4d;--hpl-purple:#ffb568;--hpl-glow:rgba(255,165,51,.32)}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] .menu,html.hpl-premium-on[data-hpl-mode=\"cozy\"] .settings__content{background:linear-gradient(155deg,#4a2618 0%,#2a1517 52%,#170e12 100%)!important;border-color:rgba(255,166,73,.33)!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] .head{background:linear-gradient(90deg,rgba(46,25,16,.94),rgba(72,37,20,.85),rgba(36,19,17,.92))!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] .settings__title,html.hpl-premium-on[data-hpl-mode=\"cozy\"] .settings-folder.focus .settings-folder__name{color:#ffcc85!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] #hpl-premium-header-scene .hpl-header-moon{filter:sepia(1) saturate(2) hue-rotate(-30deg) brightness(1.17)}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] #hpl-mystic-atmosphere .hpl-haze--floor{background:radial-gradient(ellipse at 32% 100%,rgba(255,151,42,.3),transparent 65%),radial-gradient(ellipse at 93% 90%,rgba(231,111,38,.2),transparent 55%)!important;opacity:.85!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"]{--hpl-orange:#ff4b55;--hpl-purple:#d76791;--hpl-glow:rgba(255,51,89,.36)}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] .menu,html.hpl-premium-on[data-hpl-mode=\"horror\"] .settings__content{background:linear-gradient(155deg,#421221 0%,#260d1b 53%,#0c0810 100%)!important;border-color:rgba(255,65,92,.38)!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] .head{background:linear-gradient(90deg,rgba(43,8,21,.95),rgba(73,11,29,.88),rgba(29,6,18,.95))!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] .settings__title,html.hpl-premium-on[data-hpl-mode=\"horror\"] .settings-folder.focus .settings-folder__name{color:#ff9aaa!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] #hpl-premium-header-scene .hpl-header-moon{filter:sepia(1) saturate(5) hue-rotate(300deg) brightness(1.14)}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] #hpl-mystic-atmosphere .hpl-haze--floor{background:radial-gradient(ellipse at 26% 100%,rgba(207,32,56,.33),transparent 65%),radial-gradient(ellipse at 92% 92%,rgba(122,9,36,.27),transparent 65%)!important;opacity:.95!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"horror\"] .menu__item.focus,html.hpl-premium-on[data-hpl-mode=\"horror\"] .settings-folder.focus,html.hpl-premium-on[data-hpl-mode=\"horror\"] .settings-param.focus{box-shadow:inset .2em 0 #ff4b55!important}\n",
+    "html.hpl-premium-on[data-hpl-mode=\"cozy\"] .menu__item.focus,html.hpl-premium-on[data-hpl-mode=\"cozy\"] .settings-folder.focus,html.hpl-premium-on[data-hpl-mode=\"cozy\"] .settings-param.focus{box-shadow:inset .2em 0 #ffb567!important}\n",
+    "html.hpl-premium-on.hpl-header-enabled.hpl-castle-enabled #hpl-premium-header-scene .hpl-haunted-header-svg{opacity:1!important}\n",
+    "html.hpl-premium-on #hpl-premium-header-scene .hpl-haunted-header-svg{overflow:visible}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view{overflow:visible!important;outline:.18em solid #ff9b30!important;outline-offset:.1em;box-shadow:0 0 0 .30em rgba(181,85,248,.73),0 0 1.6em rgba(173,88,255,.62),0 0 2.4em rgba(255,138,25,.34)!important}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view::before,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view::before,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view::before{content:\"\"!important;display:block!important;position:absolute!important;top:-.8em!important;left:-.8em!important;right:-.8em!important;bottom:-.8em!important;z-index:15!important;pointer-events:none!important;opacity:1!important;background:radial-gradient(circle at 12% 12%,#fff8d8 0 3px,#ffae32 5px,transparent 12px),radial-gradient(circle at 90% 11%,#fff6e5 0 3px,#be72ff 5px,transparent 12px),radial-gradient(circle at 86% 91%,#fff7d9 0 3px,#ff9b31 5px,transparent 12px),radial-gradient(circle at 9% 89%,#f9ecff 0 3px,#c68bff 5px,transparent 12px),radial-gradient(circle at 51% 4%,#ffe7a7 0 2px,#c78cff 4px,transparent 9px),radial-gradient(circle at 53% 96%,#fff6ca 0 2px,#f9a042 4px,transparent 9px)!important;box-shadow:none!important;transform:translateZ(0)!important}\n",
+    "html.hpl-premium-on.hpl-magic-enabled.hpl-motion:not(.hpl-eco) .card.focus .card__view::before,html.hpl-premium-on.hpl-magic-enabled.hpl-motion:not(.hpl-eco) .card.selector.focus .card__view::before{animation:hpl-visible-sparks 2.8s ease-in-out infinite!important}\n",
+    "@keyframes hpl-visible-sparks{0%,100%{opacity:.58;filter:brightness(.92)}50%{opacity:1;filter:brightness(1.35)}}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view::after,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view::after{border:.16em solid #d693ff!important;border-radius:.75em!important;inset:0!important;z-index:13!important;box-shadow:0 0 .6em rgba(255,158,52,.8)!important}\n",
+    "html.hpl-premium-on.hpl-eco .card.focus .card__view::before,html.hpl-premium-on.hpl-eco .card.selector.focus .card__view::before{animation:none!important}\n",
+    "@media(prefers-reduced-motion:reduce){html.hpl-premium-on .card.focus .card__view::before{animation:none!important;filter:none!important}}\n"
   ].join('');
 
   function injectStyle() {
@@ -458,7 +488,7 @@
       Lampa.SettingsApi.addParam({
         component: 'halloween_premium',
         param: {name: PREFIX + 'castle', type: 'trigger', 'default': true},
-        field: {name: 'Замок и ведьма в шапке', description: 'Мистический замок и ведьма на метле рядом с луной.'},
+        field: {name: 'Ночной лес в шапке', description: 'Стильные силуэты деревьев, свет луны и летучие мыши.'},
         onChange: onChange
       });
       Lampa.SettingsApi.addParam({
@@ -493,7 +523,7 @@
         Lampa.Listener.follow('activity', function () { setTimeout(injectLogo, 0); });
       }
     } catch (ignore) {}
-    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.3.0 ready');
+    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.3.1 ready');
   }
 
   function bootstrap() {

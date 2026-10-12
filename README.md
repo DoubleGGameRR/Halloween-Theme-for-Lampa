@@ -2,6 +2,24 @@
 
 A lightweight, autumn/Halloween-inspired visual theme for **Lampa** on Smart TV (including Samsung Tizen) and browser versions.
 
+## v1.3.1 fix for Samsung
+
+Based on real TV feedback: the old atmospheric modes were barely distinguishable and card sparkles too small. **1.3.1** fixes these issues:
+
+- **Mystic** = rich violet panels and moonlight, **Cozy** = amber/brown fall palette, **Horror** = crimson/dark red throughout both navigation panels and header. Switching modes immediately changes large UI surfaces.
+- Film focus now gets a **strong double ring and six bright TV-sized sparkles** that extend past the poster. They pulse gently in the Samsung-balanced profile; Eco keeps them still.
+- Removed the boxy castle and flying witch; replaced them with a subtle **moonlit bare-tree forest** with light tracery and bats.
+- The former “Замок и ведьма в шапке” option is now named “Ночной лес в шапке” and keeps using the prior stored toggle value.
+- No network assets, playback changes or dependencies.
+
+**New installation URL (remove the older 1.3 URL first):**
+
+```text
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.1.js
+```
+
+**Important:** only install *one* Halloween Theme JS file at a time. Keep the previous `halloween-premium-v1.3.js` if you wish to roll back.
+
 ## What's new in v1.3 — Mystic Halloween
 
 **Mystic Halloween is enabled by default.** All decorations are bundled into one JavaScript file; there are no remote images, libraries, analytics or timers.
@@ -34,17 +52,17 @@ The plugin **does not change the Samsung home-screen/system app icon**. It does 
 
 ## Install / update to v1.3 (Samsung / Tizen)
 
-1. In Lampa open **Настройки → Плагины**, remove the **older Halloween URL** (`halloween-theme.js`, `halloween-premium-v1.1.js` or `halloween-premium-v1.2.js`). Keeping multiple versions is unsupported: all of them use the same plugin ID.
+1. In Lampa open **Настройки → Плагины**, remove the **older Halloween URL** (`halloween-theme.js`, `halloween-premium-v1.1.js`, `halloween-premium-v1.2.js` or `halloween-premium-v1.3.js`). Keeping multiple versions is unsupported: all of them use the same plugin ID.
 2. Add this single HTTPS URL:
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.1.js
 ```
 
 3. Fully close and reopen Lampa.
 4. Go to **Настройки → Halloween Premium** and select **Mystic Halloween** (the default). Adjust individual effects if needed.
 
-The versioned filename prevents collisions with cached copies of v1.2. CDN propagation may still take a little time. If the theme feels slow, set **Производительность → Экономный**.
+The versioned filename prevents collisions with cached copies of v1.3. CDN propagation may still take a little time. If the theme feels slow, set **Производительность → Экономный**.
 
 **Rollback:** remove the v1.3 plugin URL and install the previous [v1.2 file](https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.2.js).
 
@@ -88,6 +106,7 @@ MIT — see [LICENSE](LICENSE).
 
 ### Changelog
 
+- **1.3.1** — visible atmosphere mode palettes, stronger card sparkles, moonlit forest instead of ugly castle/witch.
 - **1.3.0** — Mystic animated background, occasional ghost, enhanced card focus, castle/witch in header and unified search/full/season/dialog styling.
 - **1.2.0** — left menu matches right panel, accessible focus contrast, 4 selectable pumpkins, atmospheric moon/bats/mist with an independent toggle.
 - **1.1.0** — replaces the actual header logo with a scary pumpkin; reworked right settings panel.
@@ -95,4 +114,4 @@ MIT — see [LICENSE](LICENSE).
 
 ### Cache note
 
-If you installed a prior pinned URL such as `halloween-premium-v1.2.js`, remove it and install `halloween-premium-v1.3.js` instead. Fully exit Lampa after changing installed plugins.
+If you installed a prior pinned URL such as `halloween-premium-v1.3.js`, remove it and install `halloween-premium-v1.3.1.js` instead. Fully exit Lampa after changing installed plugins.

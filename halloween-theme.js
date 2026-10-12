@@ -1,6 +1,6 @@
 /*
  * Halloween Theme for Lampa — Premium Edition
- * Version: 1.0.0 | 2026-10-12
+ * Version: 1.1.0 | 2026-10-12
  * A lightweight, ES5-compatible visual theme for Lampa on TVs.
  * No external scripts, fonts, images, tracking or network requests.
  * License: MIT
@@ -31,13 +31,23 @@
   }
 
   // Inline SVG: sharp on 4K TVs, zero external dependencies.
+  // High-contrast jack-o-lantern with angry eyes and a jagged grin.
+  // Kept inline so Samsung TVs need no image fetches or additional assets.
   var pumpkinSvg = '' +
-    '<svg class="hpl-pumpkin-svg" viewBox="0 0 72 72" width="42" height="42" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
-    '<defs><linearGradient id="hpl-pumpkin-fill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffca59"/><stop offset=".52" stop-color="#ff862e"/><stop offset="1" stop-color="#b9421b"/></linearGradient></defs>' +
-    '<path d="M36 20c-2-7-1-12 5-15" fill="none" stroke="#67a35a" stroke-width="5" stroke-linecap="round"/>' +
-    '<path d="M35 21C16 11 6 27 10 44c3 16 18 22 26 19 8 3 23-3 26-19 4-17-6-33-26-23z" fill="url(#hpl-pumpkin-fill)" stroke="#e36d21" stroke-width="2"/>' +
-    '<path d="M33 21c-9 8-9 34 0 41M40 21c9 8 9 34 0 41" stroke="#b94d1e" opacity=".52" fill="none" stroke-width="2"/>' +
-    '<path d="M20 37l9-7v12H19zM52 37l-9-7v12h10zM25 49c8 7 15 7 23 0l-5 9-4-4-4 4-4-4-3 4z" fill="#281328"/>' +
+    '<svg class="hpl-pumpkin-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" aria-hidden="true">' +
+    '<defs>' +
+    '<radialGradient id="hpl-jack-body" cx=".3" cy=".25" r=".88"><stop offset="0" stop-color="#ffbd4b"/><stop offset=".35" stop-color="#ff8b1e"/><stop offset=".74" stop-color="#ed570c"/><stop offset="1" stop-color="#82250e"/></radialGradient>' +
+    '<linearGradient id="hpl-jack-fire" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff9bb"/><stop offset=".62" stop-color="#ffda48"/><stop offset="1" stop-color="#ff7000"/></linearGradient>' +
+    '</defs>' +
+    '<path d="M45 23Q43 12 53 6Q52 16 59 17Q56 24 51 26" fill="#4b8135" stroke="#2f4a25" stroke-width="2"/>' +
+    '<path d="M48 25C27 11 11 23 9 47C7 72 24 88 48 86C72 88 89 72 87 47C85 22 68 11 48 25Z" fill="url(#hpl-jack-body)" stroke="#8b2b13" stroke-width="3"/>' +
+    '<path d="M35 25C22 37 22 71 38 84M60 25C73 38 73 71 57 84" fill="none" stroke="#a7390f" stroke-width="2.6" opacity=".54"/>' +
+    '<path d="M20 41L43 38L34 52L25 51Z M76 41L53 38L62 52L71 51Z" fill="#240e16" stroke="#ffaf3f" stroke-width="1.3"/>' +
+    '<path d="M26 43L38 42L32 47ZM70 43L58 42L64 47Z" fill="url(#hpl-jack-fire)"/>' +
+    '<path d="M48 48L42 59L54 59Z" fill="#2b1117"/>' +
+    '<path d="M19 59L29 64L35 60L42 67L48 62L55 67L63 60L69 64L77 58Q75 74 57 78L52 70L47 78L41 70L36 78Q23 75 19 59Z" fill="#210b15" stroke="#9d421c" stroke-width="1.3"/>' +
+    '<path d="M28 64L35 67L31 72Z M63 67L69 64L66 72Z M42 68L48 73L54 68L50 76L46 76Z" fill="url(#hpl-jack-fire)" opacity=".94"/>' +
+    '<path d="M13 47Q12 31 25 26" fill="none" stroke="#ffcf78" stroke-width="2.3" opacity=".4" stroke-linecap="round"/>' +
     '</svg>';
 
   var spiderSvg = '' +
@@ -69,20 +79,29 @@
     'html.hpl-premium-on body{background-color:var(--hpl-bg)!important;background-image:radial-gradient(ellipse at 92% 8%,rgba(132,62,185,.17),transparent 39%),radial-gradient(ellipse at 3% 88%,rgba(255,126,27,.10),transparent 39%)!important;color:#f8f4fd}\n' +
     'html.hpl-premium-on .head{background-color:rgba(15,9,24,.62)!important;border-bottom:1px solid rgba(203,142,255,.12)}\n' +
     'html.hpl-premium-on .menu{background:linear-gradient(180deg,#171021 0%,#100c17 100%)!important;border-right:1px solid rgba(190,121,255,.17)}\n' +
-    'html.hpl-premium-on .settings,html.hpl-premium-on .settings__content,html.hpl-premium-on .modal__content,html.hpl-premium-on .modal__body{background-color:rgba(23,15,33,.97)!important}\n' +
+    'html.hpl-premium-on .settings__content{background:linear-gradient(155deg,#261437 0%,#1c1229 52%,#120e1e 100%)!important;border-left:1px solid rgba(191,117,255,.27)!important;box-shadow:-1.5em 0 3.5em rgba(7,4,15,.47)!important;color:#f6f0ff!important}\n' +
+    'html.hpl-premium-on .settings__body,html.hpl-premium-on .settings__head,html.hpl-premium-on .settings__body .scroll,html.hpl-premium-on .settings__body .scroll__body{background:transparent!important;color:#f7f0ff!important}\n' +
+    'html.hpl-premium-on .settings__title{color:#fff5ff!important;text-shadow:0 0 .75em rgba(204,122,255,.23);font-weight:500!important}\n' +
+    'html.hpl-premium-on .settings-folder__name,html.hpl-premium-on .settings-param__name{color:#f4eaff!important}\n' +
+    'html.hpl-premium-on .settings-param__value{color:#e9beff!important}\n' +
+    'html.hpl-premium-on .settings-param__descr{color:#cdb9dd!important;opacity:.85!important}\n' +
+    'html.hpl-premium-on .settings-folder.focus,html.hpl-premium-on .settings-param.focus{background:linear-gradient(90deg,rgba(147,64,218,.46),rgba(210,77,176,.22),rgba(255,136,39,.19))!important;box-shadow:inset .2em 0 #ff9229,0 0 1em rgba(121,38,187,.13)!important}\n' +
+    'html.hpl-premium-on .settings-folder.focus .settings-folder__name,html.hpl-premium-on .settings-param.focus .settings-param__name{color:#ffc17d!important}\n' +
+    'html.hpl-premium-on .modal__content,html.hpl-premium-on .modal__body{background-color:#1b1128!important}\n' +
     'html.hpl-premium-on .settings-folder,html.hpl-premium-on .settings-param{border-radius:.65em;border-color:rgba(190,121,255,.18)}\n' +
     'html.hpl-premium-on .card__view,html.hpl-premium-on .card__img,html.hpl-premium-on .card__image{border-radius:.65em!important}\n' +
     'html.hpl-premium-on .card__view{overflow:hidden;box-shadow:0 .45em 1.4em rgba(0,0,0,.33);transition:box-shadow .19s ease,transform .19s ease}\n' +
     'html.hpl-premium-on .card.focus .card__view,html.hpl-premium-on .card--focus .card__view,html.hpl-premium-on .card.selector.focus .card__view{box-shadow:0 0 0 .17em var(--hpl-orange),0 0 1.35em var(--hpl-glow),0 .6em 1.5em rgba(0,0,0,.42)!important;transform:translateY(-.14em)}\n' +
     'html.hpl-premium-on .card__title,html.hpl-premium-on .full-start__title{color:#f7f0ff;text-shadow:0 0 .65em rgba(160,85,214,.17)}\n' +
-    'html.hpl-premium-on .menu__item.focus,html.hpl-premium-on .menu__item.active,html.hpl-premium-on .settings-folder.focus,html.hpl-premium-on .settings-param.focus{background:linear-gradient(90deg,rgba(162,79,233,.23),rgba(255,132,27,.09))!important;box-shadow:inset .18em 0 var(--hpl-orange)}\n' +
+    'html.hpl-premium-on .menu__item.focus,html.hpl-premium-on .menu__item.active{background:linear-gradient(90deg,rgba(162,79,233,.23),rgba(255,132,27,.09))!important;box-shadow:inset .18em 0 var(--hpl-orange)}\n' +
     'html.hpl-premium-on .button.focus,html.hpl-premium-on .button.selector.focus,html.hpl-premium-on .simple-button.focus,html.hpl-premium-on .full-start__button.focus{border-color:var(--hpl-orange)!important;box-shadow:0 0 0 .13em var(--hpl-orange),0 0 1.1em var(--hpl-glow)!important}\n' +
     'html.hpl-premium-on .button,html.hpl-premium-on .simple-button{border-radius:.62em}\n' +
     'html.hpl-premium-on .full-start__rating,html.hpl-premium-on .card__vote,html.hpl-premium-on .card__quality{border-radius:.4em}\n' +
     'html.hpl-premium-on .card__vote,html.hpl-premium-on .full-start__rating{color:#ffd08d}\n' +
     'html.hpl-premium-on .menu__item.active .menu__text,html.hpl-premium-on .settings-folder.focus .settings-folder__name{color:var(--hpl-orange)!important}\n' +
-    'html.hpl-premium-on .hpl-pumpkin-logo{display:inline-flex;align-items:center;vertical-align:middle;margin-left:.35em;pointer-events:none}\n' +
-    'html.hpl-premium-on .hpl-pumpkin-svg{width:2.5em;height:2.5em;max-width:2.5em;max-height:2.5em;filter:drop-shadow(0 0 .4em rgba(255,137,29,.3))}\n' +
+    'html.hpl-premium-on.hpl-logo-enabled .head__logo-icon > img{opacity:0!important}\n' +
+    'html.hpl-premium-on .head__logo-icon .hpl-pumpkin-logo{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;pointer-events:none}\n' +
+    'html.hpl-premium-on .head__logo-icon .hpl-pumpkin-svg{display:block;width:100%;height:100%;filter:drop-shadow(0 0 .35em rgba(255,121,16,.48))}\n' +
     'html.hpl-premium-on #hpl-premium-decor{display:block;position:fixed;right:1.1vw;top:2.9em;width:17.5em;height:17.5em;pointer-events:none;z-index:9;opacity:.88}\n' +
     'html:not(.hpl-premium-on) #hpl-premium-decor{display:none}\n' +
     'html.hpl-premium-on #hpl-premium-decor .hpl-corner-web{position:absolute;right:0;top:0;width:100%;height:100%}\n' +
@@ -115,9 +134,9 @@
   }
 
   function injectLogo() {
-    // The original Lampa logo is preserved; this is a reversible Halloween badge.
+    // Preserve original logo in DOM and hide it only while the Halloween icon is enabled.
     if (!document.body || !enabled('logo', true)) return;
-    var spot = document.querySelector('.head__logo');
+    var spot = document.querySelector('.head__logo-icon');
     if (!spot || spot.querySelector('.' + LOGO_CLASS)) return;
     var badge = document.createElement('span');
     badge.className = LOGO_CLASS;
@@ -183,7 +202,7 @@
       Lampa.SettingsApi.addParam({
         component: 'halloween_premium',
         param: {name: PREFIX + 'logo', type: 'trigger', 'default': true},
-        field: {name: 'Тыквенный логотип', description: 'Значок внутри Lampa; системную иконку Samsung не изменяет.'},
+        field: {name: 'Страшная тыква вместо логотипа', description: 'Заменяет значок в левом верхнем углу; иконку Samsung не меняет.'},
         onChange: onChange
       });
     } catch (err) {
@@ -204,7 +223,7 @@
         Lampa.Listener.follow('activity', function () { setTimeout(injectLogo, 0); });
       }
     } catch (ignore) {}
-    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.0.0 ready');
+    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.1.0 ready');
   }
 
   function bootstrap() {

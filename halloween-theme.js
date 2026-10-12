@@ -282,6 +282,19 @@
     "@media(prefers-reduced-motion:reduce){html #hpl-mystic-atmosphere .hpl-mystic-ghost{display:none!important}html #hpl-mystic-atmosphere .hpl-haze,html #hpl-premium-header-scene .hpl-header-witch,html.hpl-premium-on .card__view:before{animation:none!important}}\n"
   ].join('');
 
+  // Samsung-balanced profile: sparse, composited animations; independent ghost control.
+  css += [
+    "html.hpl-premium-on.hpl-ghost-enabled #hpl-mystic-atmosphere{display:block}\n",
+    "html.hpl-premium-on:not(.hpl-atmosphere-enabled) #hpl-mystic-atmosphere .hpl-haze,html.hpl-premium-on:not(.hpl-atmosphere-enabled) #hpl-mystic-atmosphere .hpl-embers{display:none}\n",
+    "html.hpl-premium-on.hpl-ghost-enabled #hpl-mystic-atmosphere .hpl-mystic-ghost{display:block}\n",
+    "html.hpl-premium-on.hpl-ghost-enabled.hpl-motion:not(.hpl-eco) #hpl-mystic-atmosphere .hpl-mystic-ghost{animation:hpl-ghostpeek 24s ease-in-out infinite}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-full-effects) #hpl-premium-header-scene .hpl-header-bats,html.hpl-premium-on.hpl-motion:not(.hpl-full-effects) #hpl-premium-header-scene .hpl-header-mist{animation:none!important}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-eco):not(.hpl-full-effects) #hpl-premium-decor .hpl-spider-svg{animation:hpl-sway 11s ease-in-out infinite}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-eco):not(.hpl-full-effects) #hpl-premium-header-scene .hpl-header-witch{animation:hpl-witchfly 26s ease-in-out infinite}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-eco):not(.hpl-full-effects) #hpl-mystic-atmosphere .hpl-haze--floor{animation:hpl-fogbreath 25s ease-in-out infinite}\n",
+    "html.hpl-premium-on body.settings--open #hpl-mystic-atmosphere .hpl-mystic-ghost,html.hpl-premium-on body.selectbox--open #hpl-mystic-atmosphere .hpl-mystic-ghost{animation:none!important;display:none!important}\n"
+  ].join('');
+
   function injectStyle() {
     if (document.getElementById(STYLE_ID)) return;
     var style = document.createElement('style');

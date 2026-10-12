@@ -6,10 +6,12 @@ A lightweight, autumn/Halloween-inspired visual theme for **Lampa** on Smart TV 
 
 - Premium near-black, purple and pumpkin-orange palette
 - Focus glow on selected movie cards and buttons
-- Refined menus, settings screens and labels
+- Consistent deep-purple **right settings panel** and refined menus and labels
 - Decorative hanging spider with spiderweb (inline SVG)
-- Halloween pumpkin emblem next to Lampa's **internal header logo**, when supported by the current Lampa layout
+- A scary orange jack-o-lantern that **replaces the Lampa icon in the app header** (not the Samsung system app icon)
 - A dedicated **Halloween Premium** settings section: main switch, color palette, spider/web, animation and internal logo emblem
+
+Version **1.1.0** fixes the internal header icon selector and reworks the right settings panel to match the rest of the premium theme.
 
 The plugin **does not change the Samsung home-screen/system app icon**. It does not patch media playback or request remote resources.
 
@@ -63,3 +65,12 @@ Run `node tests/smoke.js` to verify settings, focus effects, logo initialization
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+### Updating from 1.0
+
+The same jsDelivr `@main` URL is still valid, but CDN caches can serve the old JavaScript for a while. Fully exit Lampa and restart. If it still shows the old logo, replace the URL with the fresh versioned path below:
+
+```text
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.1.js
+```
+

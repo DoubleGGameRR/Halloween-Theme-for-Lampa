@@ -35,10 +35,20 @@ var context = {window: {appready:true,Lampa:Lampa, console:console}, document:do
 vm.runInNewContext(src, context);
 assert.strictEqual(context.window.plugin_halloween_theme_premium_ready, true);
 assert.strictEqual(settings.components.length, 1, 'Settings section created');
-assert.strictEqual(settings.params.length, 7, '7 settings created');
+assert.strictEqual(settings.params.length, 14, '14 settings: visual theme, Mystic decor and performance controls');
 assert.strictEqual(head.children.length, 1, 'CSS added');
-assert.strictEqual(body.children.length, 3, 'Spider and centered header scene added');
+assert.strictEqual(body.children.length, 4, 'Spider, moon/castle header and ambient background added');
 assert.strictEqual(body.children[2].id, 'hpl-premium-header-scene', 'Top-center header scene created');
+assert.strictEqual(body.children[3].id, 'hpl-mystic-atmosphere', 'Mystic background created');
+assert.ok(body.children[2].innerHTML.indexOf('hpl-haunted-header-svg') >= 0, 'Gothic castle SVG appended');
+assert.ok(body.children[3].innerHTML.indexOf('hpl-mystic-ghost-svg') >= 0, 'Ghost SVG appended');
+assert.ok(head.children[0].textContent.indexOf('hpl-magic-enabled .card.focus') >= 0, 'Magical card focus CSS');
+assert.ok(head.children[0].textContent.indexOf('hpl-windows-enabled .selectbox__content') >= 0, 'Selectbox styling');
+assert.ok(head.children[0].textContent.indexOf('hpl-windows-enabled .search__input') >= 0, 'Search styling');
+assert.ok(head.children[0].textContent.indexOf('hpl-windows-enabled .full-start__title') >= 0, 'Full film card styling');
+assert.ok(head.children[0].textContent.indexOf('hpl-windows-enabled .full-episode.focus') >= 0, 'Episode styling');
+assert.ok(head.children[0].textContent.indexOf('hpl-ghostpeek 24s') >= 0, 'Occasional ghost animation');
+assert.ok(head.children[0].textContent.indexOf('hpl-ghost-enabled #hpl-mystic-atmosphere{display:block}') >= 0, 'Ghost independent of fog');
 assert.strictEqual(logo.children.length, 2, 'Pumpkin replaces logo visually, original markup preserved');
 assert.strictEqual(logo.children[1].className, 'hpl-pumpkin-logo', 'Correct Lampa logo selector');
 assert.ok(head.children[0].textContent.indexOf('.settings__content{background:linear-gradient(') >= 0, 'Settings right panel gradient present');
@@ -49,6 +59,8 @@ assert.strictEqual(classes['hpl-header-enabled'], true, 'Moon, bats and mist ena
 assert.ok(head.children[0].textContent.indexOf('.menu{background:linear-gradient(155deg,#261437') >= 0, 'Left menu matches settings gradient');
 assert.ok(head.children[0].textContent.indexOf('.menu__item.focus .menu__text') >= 0, 'Focused menu text stays readable');
 assert.strictEqual(root.attrs['data-hpl-palette'], 'purple');
+assert.strictEqual(root.attrs['data-hpl-mode'], 'mystic', 'Mystic default mood');
+['hpl-atmosphere-enabled','hpl-ghost-enabled','hpl-magic-enabled','hpl-castle-enabled','hpl-windows-enabled'].forEach(function (name) {assert.strictEqual(classes[name], true, 'Feature enabled by default: ' + name);});
 
 storage.hpl_enabled = false;
 settings.params[0].onChange();
@@ -82,6 +94,27 @@ topParam.onChange();
 assert.strictEqual(classes['hpl-header-enabled'], true, 'Header decor toggles on');
 handlers.activity[0]();
 assert.strictEqual(logo.children.length, 2, 'Logo is idempotent');
+var paramByName = function (id) {return settings.params.filter(function (x) {return x.param.name === 'hpl_' + id;})[0];};
+[['atmosphere','hpl-atmosphere-enabled'], ['apparitions','hpl-ghost-enabled'], ['magic','hpl-magic-enabled'], ['castle','hpl-castle-enabled'], ['windows','hpl-windows-enabled']].forEach(function (pair) {
+  storage['hpl_' + pair[0]] = false;
+  paramByName(pair[0]).onChange();
+  assert.strictEqual(classes[pair[1]], false, 'Toggle disabled: ' + pair[0]);
+  storage['hpl_' + pair[0]] = true;
+  paramByName(pair[0]).onChange();
+  assert.strictEqual(classes[pair[1]], true, 'Toggle enabled: ' + pair[0]);
+});
+['cozy','horror','mystic'].forEach(function (mode) {
+  storage.hpl_mode = mode;
+  paramByName('mode').onChange();
+  assert.strictEqual(root.attrs['data-hpl-mode'], mode, 'Mood: ' + mode);
+});
+['eco','full','balanced'].forEach(function (mode) {
+  storage.hpl_performance = mode;
+  paramByName('performance').onChange();
+  assert.strictEqual(classes['hpl-eco'], mode === 'eco', 'Eco: ' + mode);
+  assert.strictEqual(classes['hpl-full-effects'], mode === 'full', 'Full animation: ' + mode);
+});
 vm.runInNewContext(src, context);
 assert.strictEqual(settings.components.length, 1, 'Bootstrap is idempotent');
-console.log('PASS: v1.2 settings, 4 pumpkin SVGs, matching nav panel, decor toggles, theme toggles and idempotency');
+assert.strictEqual(body.children.length, 4, 'No duplicate atmosphere layers');
+console.log('PASS: v1.3 Mystic atmosphere, ghost, four pumpkins, magical cards, five UI views, balanced animations, settings, modes and idempotency');

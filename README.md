@@ -4,6 +4,9 @@ A lightweight, autumn/Halloween-inspired visual theme for **Lampa** on Smart TV 
 
 ## What it changes
 
+- **v1.2:** matching purple gradients across both navigation panels; high-contrast focus text and icons
+- **v1.2:** four selectable header pumpkins (Evil, Classic, Burning, Haunted) in Settings → Halloween Premium → Вид тыквы
+- **v1.2:** optional moon, bats and drifting mist at the center of the top edge
 - Premium near-black, purple and pumpkin-orange palette
 - Focus glow on selected movie cards and buttons
 - Consistent deep-purple **right settings panel** and refined menus and labels
@@ -11,22 +14,24 @@ A lightweight, autumn/Halloween-inspired visual theme for **Lampa** on Smart TV 
 - A scary orange jack-o-lantern that **replaces the Lampa icon in the app header** (not the Samsung system app icon)
 - A dedicated **Halloween Premium** settings section: main switch, color palette, spider/web, animation and internal logo emblem
 
-Version **1.1.0** fixes the internal header icon selector and reworks the right settings panel to match the rest of the premium theme.
+Version **1.2.0** uses the same right settings panel gradient on the left menu and includes four in-app pumpkin icons and atmospheric header artwork.
 
 The plugin **does not change the Samsung home-screen/system app icon**. It does not patch media playback or request remote resources.
 
-## Installation
+## Installation / Update from 1.1
 
-1. Open Lampa → **Настройки** → **Плагины / Расширения** → **Добавить плагин**.
-2. Paste the **TV-compatible JavaScript CDN URL** (not the GitHub `raw.githubusercontent.com` address):
+1. Open Lampa → **Настройки** → **Плагины / Расширения**.
+2. Remove the previous URL for `halloween-theme.js` or `halloween-premium-v1.1.js` if present. **Do not keep both**: they share the same plugin identifier and would conflict.
+3. Use the new fixed URL below. Keeping the file name versioned also avoids stale jsDelivr caches:
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-theme.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.2.js
 ```
 
-3. **Remove any previously installed `raw.githubusercontent.com/DoubleGGameRR/Halloween-Theme-for-Lampa/...` plugin URL** from the plugins list; otherwise Lampa will keep showing the old failed URL when starting.
-4. Add the new jsDelivr URL, confirm, and **fully restart Lampa**.
-5. Open Settings → **Halloween Premium** to adjust the theme.
+4. Confirm and fully restart Lampa.
+5. Open **Settings → Halloween Premium** and choose **Вид тыквы** for one of four artworks, or toggle **Луна, летучие мыши и туман**.
+
+The main development file `halloween-theme.js` is also maintained, but its stable URL can temporarily serve cached old versions. The versioned link above is recommended on TV.
 
 ### Why not use GitHub Raw directly on TV?
 
@@ -66,11 +71,12 @@ Run `node tests/smoke.js` to verify settings, focus effects, logo initialization
 
 MIT — see [LICENSE](LICENSE).
 
-### Updating from 1.0
+### Changelog
 
-The same jsDelivr `@main` URL is still valid, but CDN caches can serve the old JavaScript for a while. Fully exit Lampa and restart. If it still shows the old logo, replace the URL with the fresh versioned path below:
+- **1.2.0** — left menu matches right panel, accessible focus contrast, 4 selectable pumpkins, atmospheric moon/bats/mist with an independent toggle.
+- **1.1.0** — replaces the actual header logo with a scary pumpkin; reworked right settings panel.
+- **1.0.0** — first public release.
 
-```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.1.js
-```
+### Cache note
 
+If you installed a prior pinned URL such as `halloween-premium-v1.1.js`, you **must** remove it and install the `halloween-premium-v1.2.js` URL instead. Fully exit Lampa after changing installed plugins.

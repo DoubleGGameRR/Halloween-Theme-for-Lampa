@@ -10,6 +10,7 @@ function element(tag) {
   var node = {tag: tag, id: '', className: '', children: [], attrs: {}, parentNode: null, textContent: '', innerHTML: ''};
   node.appendChild = function (child) { child.parentNode = node; node.children.push(child); return child; };
   node.setAttribute = function (name, val) {node.attrs[name] = val;};
+  node.getAttribute = function (name) {return node.attrs[name] || null;};
   node.querySelector = function (selector) { if (selector.charAt(0) === '.') return node.children.filter(function (x) { return (' ' + x.className + ' ').indexOf(' ' + selector.substr(1) + ' ') >= 0; })[0] || null; return null; };
   return node;
 }
@@ -34,15 +35,19 @@ var context = {window: {appready:true,Lampa:Lampa, console:console}, document:do
 vm.runInNewContext(src, context);
 assert.strictEqual(context.window.plugin_halloween_theme_premium_ready, true);
 assert.strictEqual(settings.components.length, 1, 'Settings section created');
-assert.strictEqual(settings.params.length, 5, '5 settings created');
+assert.strictEqual(settings.params.length, 7, '7 settings created');
 assert.strictEqual(head.children.length, 1, 'CSS added');
-assert.strictEqual(body.children.length, 2, 'Only one decoration added');
+assert.strictEqual(body.children.length, 3, 'Spider and centered header scene added');
+assert.strictEqual(body.children[2].id, 'hpl-premium-header-scene', 'Top-center header scene created');
 assert.strictEqual(logo.children.length, 2, 'Pumpkin replaces logo visually, original markup preserved');
 assert.strictEqual(logo.children[1].className, 'hpl-pumpkin-logo', 'Correct Lampa logo selector');
 assert.ok(head.children[0].textContent.indexOf('.settings__content{background:linear-gradient(') >= 0, 'Settings right panel gradient present');
 assert.ok(head.children[0].textContent.indexOf('.head__logo-icon > img{opacity:0!important}') >= 0, 'Original logo hidden by reversible style');
 assert.strictEqual(classes['hpl-premium-on'], true);
 assert.strictEqual(classes['hpl-decor-enabled'], true);
+assert.strictEqual(classes['hpl-header-enabled'], true, 'Moon, bats and mist enabled by default');
+assert.ok(head.children[0].textContent.indexOf('.menu{background:linear-gradient(155deg,#261437') >= 0, 'Left menu matches settings gradient');
+assert.ok(head.children[0].textContent.indexOf('.menu__item.focus .menu__text') >= 0, 'Focused menu text stays readable');
 assert.strictEqual(root.attrs['data-hpl-palette'], 'purple');
 
 storage.hpl_enabled = false;
@@ -56,8 +61,27 @@ assert.strictEqual(classes['hpl-premium-on'], true, 'Theme reenabled');
 assert.strictEqual(root.attrs['data-hpl-palette'], 'ember', 'Palette change applied');
 assert.strictEqual(classes['hpl-decor-enabled'], false, 'Spider toggle applied');
 
+// Switching four hand-drawn pumpkins updates the badge without creating duplicates.
+var logoBadge = logo.children[1];
+var pumpkinParam = settings.params.filter(function (param) {return param.param.name === 'hpl_pumpkin_style';})[0];
+var variants = {};
+['evil', 'classic', 'burning', 'haunted'].forEach(function (type) {
+  storage.hpl_pumpkin_style = type;
+  pumpkinParam.onChange();
+  assert.strictEqual(logoBadge.getAttribute('data-hpl-variant'), type, 'Icon switching: ' + type);
+  assert.ok(logoBadge.innerHTML.length > 500, 'Nonempty SVG for ' + type);
+  variants[type] = logoBadge.innerHTML;
+});
+assert.strictEqual(new Set(Object.keys(variants).map(function (type) {return variants[type];})).size, 4, '4 different SVG artworks');
+var topParam = settings.params.filter(function (param) {return param.param.name === 'hpl_header_decor';})[0];
+storage.hpl_header_decor = false;
+topParam.onChange();
+assert.strictEqual(classes['hpl-header-enabled'], false, 'Header decor toggles off');
+storage.hpl_header_decor = true;
+topParam.onChange();
+assert.strictEqual(classes['hpl-header-enabled'], true, 'Header decor toggles on');
 handlers.activity[0]();
 assert.strictEqual(logo.children.length, 2, 'Logo is idempotent');
 vm.runInNewContext(src, context);
 assert.strictEqual(settings.components.length, 1, 'Bootstrap is idempotent');
-console.log('PASS: registration, style, decoration, logo, settings toggles, palettes and idempotency');
+console.log('PASS: v1.2 settings, 4 pumpkin SVGs, matching nav panel, decor toggles, theme toggles and idempotency');

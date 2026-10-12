@@ -2,6 +2,20 @@
 
 A lightweight, autumn/Halloween-inspired visual theme for **Lampa** on Smart TV (including Samsung Tizen) and browser versions.
 
+## What's new in v1.3 — Mystic Halloween
+
+**Mystic Halloween is enabled by default.** All decorations are bundled into one JavaScript file; there are no remote images, libraries, analytics or timers.
+
+1. **Mystic ambient background** — violet haze, tiny orange light points and faint border glow, with the actual film posters kept readable.
+2. **Occasional ghost** — a ghost peeks from the left edge once per animation cycle; existing spider remains, with a longer, subtler sway.
+3. **Magical film-card focus** — double orange/purple ring and very small static sparks; extra sparkle movement is only enabled in Full effects mode.
+4. **Haunted top header** — moon, bats, Gothic castle, flying witch and mist. The castle and witch have their own toggle.
+5. **Unified Lampa windows** — search, selection boxes, movie details, episodes, settings and popup dialogs, using verified Lampa selectors.
+
+**Performance:** the default *Сбалансировано (Samsung)* mode keeps only a few gentle transform/opacity animations. *Экономный* disables decoration motion; *Больше анимации* enables additional movement. CSS respects `prefers-reduced-motion` when available. No video/player functions are changed. Some third-party plugin dialogs may have different class names and keep their own appearance.
+
+Settings → Halloween Premium contains the atmosphere mode (Mystic default, Cozy or Horror) and individual toggles for fog, ghost, card glow, castle, windows and performance, plus the original four pumpkin logo options.
+
 ## What it changes
 
 - **v1.2:** matching purple gradients across both navigation panels; high-contrast focus text and icons
@@ -14,24 +28,25 @@ A lightweight, autumn/Halloween-inspired visual theme for **Lampa** on Smart TV 
 - A scary orange jack-o-lantern that **replaces the Lampa icon in the app header** (not the Samsung system app icon)
 - A dedicated **Halloween Premium** settings section: main switch, color palette, spider/web, animation and internal logo emblem
 
-Version **1.2.0** uses the same right settings panel gradient on the left menu and includes four in-app pumpkin icons and atmospheric header artwork.
+Version **1.3.0** adds Mystic fog, ghost, Gothic castle/witch, premium card focus and theming across Lampa windows while keeping all v1.2 controls.
 
 The plugin **does not change the Samsung home-screen/system app icon**. It does not patch media playback or request remote resources.
 
-## Installation / Update from 1.1
+## Install / update to v1.3 (Samsung / Tizen)
 
-1. Open Lampa → **Настройки** → **Плагины / Расширения**.
-2. Remove the previous URL for `halloween-theme.js` or `halloween-premium-v1.1.js` if present. **Do not keep both**: they share the same plugin identifier and would conflict.
-3. Use the new fixed URL below. Keeping the file name versioned also avoids stale jsDelivr caches:
+1. In Lampa open **Настройки → Плагины**, remove the **older Halloween URL** (`halloween-theme.js`, `halloween-premium-v1.1.js` or `halloween-premium-v1.2.js`). Keeping multiple versions is unsupported: all of them use the same plugin ID.
+2. Add this single HTTPS URL:
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.2.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.js
 ```
 
-4. Confirm and fully restart Lampa.
-5. Open **Settings → Halloween Premium** and choose **Вид тыквы** for one of four artworks, or toggle **Луна, летучие мыши и туман**.
+3. Fully close and reopen Lampa.
+4. Go to **Настройки → Halloween Premium** and select **Mystic Halloween** (the default). Adjust individual effects if needed.
 
-The main development file `halloween-theme.js` is also maintained, but its stable URL can temporarily serve cached old versions. The versioned link above is recommended on TV.
+The versioned filename prevents collisions with cached copies of v1.2. CDN propagation may still take a little time. If the theme feels slow, set **Производительность → Экономный**.
+
+**Rollback:** remove the v1.3 plugin URL and install the previous [v1.2 file](https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.2.js).
 
 ### Why not use GitHub Raw directly on TV?
 
@@ -73,10 +88,11 @@ MIT — see [LICENSE](LICENSE).
 
 ### Changelog
 
+- **1.3.0** — Mystic animated background, occasional ghost, enhanced card focus, castle/witch in header and unified search/full/season/dialog styling.
 - **1.2.0** — left menu matches right panel, accessible focus contrast, 4 selectable pumpkins, atmospheric moon/bats/mist with an independent toggle.
 - **1.1.0** — replaces the actual header logo with a scary pumpkin; reworked right settings panel.
 - **1.0.0** — first public release.
 
 ### Cache note
 
-If you installed a prior pinned URL such as `halloween-premium-v1.1.js`, you **must** remove it and install the `halloween-premium-v1.2.js` URL instead. Fully exit Lampa after changing installed plugins.
+If you installed a prior pinned URL such as `halloween-premium-v1.2.js`, remove it and install `halloween-premium-v1.3.js` instead. Fully exit Lampa after changing installed plugins.

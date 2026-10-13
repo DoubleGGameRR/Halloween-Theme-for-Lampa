@@ -1,6 +1,6 @@
 /*
  * Halloween Theme for Lampa — Premium Edition
- * Version: 1.3.2 | 2026-10-14
+ * Version: 1.3.3 | 2026-10-14
  * A lightweight, ES5-compatible visual theme for Lampa on TVs.
  * No external scripts, fonts, images, tracking or network requests.
  * License: MIT
@@ -15,6 +15,7 @@
   var TOP_ID = 'hpl-premium-header-scene';
   var ATM_ID = 'hpl-mystic-atmosphere';
   var SKELETON_ID = 'hpl-haunted-skeletons';
+  var HEADER_FILL_ID = 'hpl-header-fill';
   var LOGO_CLASS = 'hpl-pumpkin-logo';
   var ROOT_CLASS = 'hpl-premium-on';
   var settingsRegistered = false;
@@ -370,6 +371,71 @@
     "@media(prefers-reduced-motion:reduce){html #hpl-haunted-skeletons .hpl-skeleton{animation:none!important}}\n"
   ].join('');
 
+  // Full-width Halloween candy garland for the previously empty strip below the header.
+  // Kept as one inline SVG for fast Tizen rendering and no external assets.
+  var headerFillSvg = [
+    "<svg class=\"hpl-header-fill-svg\" viewBox=\"0 0 1600 140\" preserveAspectRatio=\"none\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\">",
+    "<defs><linearGradient id=\"hpl-garland-wire\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"0\"><stop stop-color=\"#8b48e4\"/><stop offset=\".5\" stop-color=\"#e2a8ff\"/><stop offset=\"1\" stop-color=\"#a866f5\"/></linearGradient><radialGradient id=\"hpl-garland-orange\"><stop stop-color=\"#fff1b0\"/><stop offset=\".4\" stop-color=\"#ffa328\"/><stop offset=\"1\" stop-color=\"#e44911\"/></radialGradient><radialGradient id=\"hpl-garland-purple\"><stop stop-color=\"#ffe2ff\"/><stop offset=\".45\" stop-color=\"#cc70ff\"/><stop offset=\"1\" stop-color=\"#6323ab\"/></radialGradient><radialGradient id=\"hpl-garland-halo\"><stop stop-color=\"#ff942e\" stop-opacity=\".48\"/><stop offset=\"1\" stop-color=\"#ff942e\" stop-opacity=\"0\"/></radialGradient></defs>",
+    "<g fill=\"none\" stroke=\"#bd84f8\" stroke-width=\"1.5\" opacity=\".63\">",
+    "<path d=\"M0 0L193 0M0 0L175 45M0 0L140 93M0 0L83 125M0 0L0 135M1600 0L1407 0M1600 0L1425 45M1600 0L1460 93M1600 0L1517 125M1600 0V135\"/>",
+    "<path d=\"M40 0Q55 26 83 31Q108 37 131 68M80 0Q88 19 108 24Q135 33 150 56M122 0Q131 15 147 19Q169 25 177 39M0 40Q25 45 38 72Q45 98 86 105M0 80Q18 85 22 104Q29 121 54 129\"/>",
+    "<path d=\"M1560 0Q1545 26 1517 31Q1492 37 1469 68M1520 0Q1512 19 1492 24Q1465 33 1450 56M1478 0Q1469 15 1453 19Q1431 25 1423 39M1600 40Q1575 45 1562 72Q1555 98 1514 105M1600 80Q1582 85 1578 104Q1571 121 1546 129\"/>",
+    "</g>",
+    "<path d=\"M155 12Q250 72 355 28T565 24T795 28T1040 31T1280 25T1450 13\" stroke=\"#4d2c67\" stroke-width=\"5\" fill=\"none\" opacity=\".65\"/>",
+    "<path d=\"M155 12Q250 72 355 28T565 24T795 28T1040 31T1280 25T1450 13\" stroke=\"url(#hpl-garland-wire)\" stroke-width=\"2.3\" fill=\"none\" opacity=\".87\"/>",
+    "<g class=\"hpl-garland-lights\">",
+    "<circle cx=\"214\" cy=\"42\" r=\"19\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"214\" cy=\"42\" r=\"5.2\" fill=\"url(#hpl-garland-orange)\"/>",
+    "<circle cx=\"303\" cy=\"52\" r=\"16\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"303\" cy=\"52\" r=\"4.6\" fill=\"#ffbd4b\"/>",
+    "<circle cx=\"416\" cy=\"20\" r=\"16\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"416\" cy=\"20\" r=\"4.7\" fill=\"url(#hpl-garland-orange)\"/>",
+    "<circle cx=\"542\" cy=\"27\" r=\"17\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"542\" cy=\"27\" r=\"5.1\" fill=\"#ffab2a\"/>",
+    "<circle cx=\"654\" cy=\"38\" r=\"19\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"654\" cy=\"38\" r=\"5.5\" fill=\"#ff8c23\"/>",
+    "<circle cx=\"806\" cy=\"35\" r=\"15\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"806\" cy=\"35\" r=\"4.7\" fill=\"#ffbe5c\"/>",
+    "<circle cx=\"944\" cy=\"27\" r=\"18\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"944\" cy=\"27\" r=\"5.3\" fill=\"#ff9831\"/>",
+    "<circle cx=\"1060\" cy=\"36\" r=\"17\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"1060\" cy=\"36\" r=\"4.8\" fill=\"#ffb747\"/>",
+    "<circle cx=\"1195\" cy=\"28\" r=\"18\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"1195\" cy=\"28\" r=\"5.5\" fill=\"#ff8b2d\"/>",
+    "<circle cx=\"1348\" cy=\"32\" r=\"16\" fill=\"url(#hpl-garland-halo)\"/><circle cx=\"1348\" cy=\"32\" r=\"5\" fill=\"#ffc063\"/>",
+    "</g>",
+    "<g fill=\"none\" stroke=\"#b77aee\" stroke-width=\"1.4\" opacity=\".72\"><path d=\"M385 26V53M600 31V56M905 29V57M1140 32V55M1290 30V58\"/></g>",
+    "<g transform=\"translate(382 71) rotate(-12)\"><path d=\"M-22 0L-45 -11L-43 12L-22 7M22 0L45 -11L43 12L22 7\" fill=\"#c26afb\" stroke=\"#f6dcff\" stroke-width=\"1.2\"/><ellipse rx=\"23\" ry=\"16\" fill=\"url(#hpl-garland-purple)\" stroke=\"#f6ceff\" stroke-width=\"1.7\"/><path d=\"M-10 -11L8 12M-7 12L10 -10\" stroke=\"#fcefff\" stroke-width=\"3.5\" opacity=\".7\"/></g>",
+    "<g transform=\"translate(600 74) rotate(13)\"><path d=\"M-21 0L-42 -12L-41 12L-21 7M21 0L42 -12L41 12L21 7\" fill=\"#ff922c\" stroke=\"#ffe2ac\" stroke-width=\"1.2\"/><ellipse rx=\"22\" ry=\"15\" fill=\"url(#hpl-garland-orange)\" stroke=\"#ffd78b\" stroke-width=\"1.6\"/><path d=\"M-8 -12L9 12M-9 11L8 -11\" stroke=\"#ffebc4\" stroke-width=\"3\" opacity=\".76\"/></g>",
+    "<g transform=\"translate(900 75)\"><circle r=\"18\" fill=\"#fff0b9\" stroke=\"#f3972f\" stroke-width=\"3\"/><path d=\"M-7 -11Q13 -11 6 0T-7 12Q-16 2 -7 -5T5 -1\" fill=\"none\" stroke=\"#ff8a24\" stroke-width=\"5\"/><path d=\"M0 18V42\" stroke=\"#f9dec9\" stroke-width=\"3.6\"/></g>",
+    "<g transform=\"translate(1137 73) rotate(-9)\"><path d=\"M-21 0L-42 -10L-42 11L-20 6M21 0L42 -10L42 11L20 6\" fill=\"#b56af9\" stroke=\"#eec7ff\" stroke-width=\"1.3\"/><ellipse rx=\"21\" ry=\"15\" fill=\"url(#hpl-garland-purple)\" stroke=\"#edc6ff\" stroke-width=\"1.4\"/><path d=\"M-7 -13L8 13M-8 12L8 -12\" stroke=\"#fbebff\" stroke-width=\"3\" opacity=\".76\"/></g>",
+    "<g transform=\"translate(1289 76)\"><path d=\"M0 -18L-16 2L16 2Z\" fill=\"#ffe0a3\"/><path d=\"M-16 2L16 2L10 20L-10 20Z\" fill=\"#ff9931\"/><path d=\"M-11 14L11 14L6 22L-6 22Z\" fill=\"#f8da83\"/></g>",
+    "<g fill=\"#110b1f\" stroke=\"#bf7cec\" stroke-width=\"1.3\" opacity=\".9\">",
+    "<path d=\"M510 67Q492 51 479 65Q470 60 454 65Q471 68 478 81Q486 74 495 77L510 68L525 77Q534 74 542 81Q549 68 566 65Q550 60 541 65Q528 51 510 67Z\"/>",
+    "<path d=\"M1032 82Q1020 69 1012 80Q1004 76 992 80Q1005 84 1009 91Q1016 85 1023 88L1032 82L1041 88Q1048 85 1055 91Q1059 84 1073 80Q1060 76 1053 80Q1044 69 1032 82Z\"/>",
+    "</g>",
+    "<g fill=\"#271437\" stroke=\"#ffae3b\" stroke-width=\"1.7\" opacity=\".96\">",
+    "<g transform=\"translate(735 64)\"><path d=\"M0 -21L5 -24L5 -16\" stroke=\"#518441\" stroke-width=\"4\" fill=\"none\"/><ellipse rx=\"21\" ry=\"20\" fill=\"url(#hpl-garland-orange)\"/><path d=\"M-12 -5L-3 -9L-6 0ZM12 -5L3 -9L6 0ZM-12 8L-4 5L0 9L4 5L12 8Q7 15 0 14Q-8 15 -12 8Z\" fill=\"#281129\" stroke=\"none\"/></g>",
+    "<g transform=\"translate(1225 57) scale(.76)\"><path d=\"M0 -21L5 -25L5 -17\" stroke=\"#508042\" stroke-width=\"5\" fill=\"none\"/><ellipse rx=\"21\" ry=\"20\" fill=\"url(#hpl-garland-orange)\"/><path d=\"M-12 -5L-3 -9L-6 0ZM12 -5L3 -9L6 0ZM-12 8L-4 5L0 9L4 5L12 8Q7 15 0 14Q-8 15 -12 8Z\" fill=\"#281129\" stroke=\"none\"/></g>",
+    "</g>",
+    "</svg>"
+  ].join('');
+
+  function injectHeaderFill() {
+    if (!document.body || document.getElementById(HEADER_FILL_ID)) return;
+    var wrap = document.createElement('div');
+    wrap.id = HEADER_FILL_ID;
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = headerFillSvg;
+    document.body.appendChild(wrap);
+  }
+
+  // Garland covers the free strip below the navigation bar, not its interactive controls.
+  css += [
+    "html #hpl-header-fill{display:none;position:fixed;top:3.05em;left:0;right:0;width:100%;height:3.65em;pointer-events:none;overflow:hidden;z-index:14;opacity:.97}\n",
+    "html.hpl-premium-on.hpl-header-fill-enabled #hpl-header-fill{display:block}\n",
+    "html #hpl-header-fill .hpl-header-fill-svg{display:block;width:100%;height:100%;overflow:hidden}\n",
+    "html.hpl-premium-on.hpl-header-fill-enabled #hpl-premium-header-scene{display:none!important}\n",
+    "html.hpl-premium-on.hpl-header-fill-enabled body.settings--open #hpl-header-fill,html.hpl-premium-on.hpl-header-fill-enabled body.selectbox--open #hpl-header-fill,html.hpl-premium-on.hpl-header-fill-enabled body.modal--open #hpl-header-fill{display:none!important}\n",
+    "html.hpl-premium-on .head__logo-icon{overflow:visible!important;margin-right:1.72em!important}\n",
+    "html.hpl-premium-on .head__logo-icon .hpl-pumpkin-logo{transform:scale(1.43)!important;transform-origin:left center!important}\n",
+    "html.hpl-premium-on .head__logo-icon .hpl-pumpkin-svg{filter:drop-shadow(0 0 .43em rgba(255,133,33,.57))!important}\n",
+    "@media(max-width:1200px){html #hpl-header-fill{top:3.12em;height:3.2em}}\n",
+    "@media(max-width:800px){html #hpl-header-fill{top:3.1em;height:2.6em;opacity:.82}html.hpl-premium-on .head__logo-icon .hpl-pumpkin-logo{transform:scale(1.2)!important}}\n",
+    "@media(prefers-reduced-motion:reduce){html #hpl-header-fill .hpl-garland-lights{animation:none!important}}\n"
+  ].join('');
+
   function injectStyle() {
     if (document.getElementById(STYLE_ID)) return;
     var style = document.createElement('style');
@@ -427,6 +493,7 @@
     root.classList.toggle('hpl-motion', on && enabled('motion', true));
     root.classList.toggle('hpl-logo-enabled', on && enabled('logo', true));
     root.classList.toggle('hpl-header-enabled', on && enabled('header_decor', true));
+    root.classList.toggle('hpl-header-fill-enabled', on && enabled('header_fill', true));
     root.classList.toggle('hpl-castle-enabled', on && enabled('castle', true));
     root.classList.toggle('hpl-atmosphere-enabled', on && enabled('atmosphere', true));
     root.classList.toggle('hpl-ghost-enabled', on && enabled('apparitions', true));
@@ -446,6 +513,7 @@
       injectDecor();
       injectMysticAtmosphere();
       injectSkeletons();
+      injectHeaderFill();
       injectLogo();
     }
   }
@@ -504,6 +572,12 @@
         component: 'halloween_premium',
         param: {name: PREFIX + 'header_decor', type: 'trigger', 'default': true},
         field: {name: 'Луна, летучие мыши и туман', description: 'Лёгкий декор в центре верхней части экрана.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'header_fill', type: 'trigger', 'default': true},
+        field: {name: 'Гирлянда, паутина и конфеты сверху', description: 'Украшения на всю ширину свободной верхней полосы Lampa.'},
         onChange: onChange
       });
       Lampa.SettingsApi.addParam({
@@ -576,7 +650,7 @@
         Lampa.Listener.follow('activity', function () { setTimeout(injectLogo, 0); });
       }
     } catch (ignore) {}
-    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.3.2 ready');
+    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.3.3 ready');
   }
 
   function bootstrap() {

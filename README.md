@@ -1,5 +1,22 @@
 # 🎃 Halloween Theme for Lampa — Premium Edition
 
+## Halloween Premium 1.3.2 — Focus cleanup + scary skeletons
+
+- **No sparkles**: removes both previous CSS sparkle implementations and animation keyframes.
+- **No square orange outline**: Lampa's original rounded poster geometry is retained, highlighted with a single purple rounded border and a subtle violet glow.
+- **Two skeletons**: slender bony skeletons with glowing orange eyes peek from the lower left and right screen edges, rendered as inline SVGs with no downloads or external dependencies.
+- **Samsung-friendly**: rare, slow rotations; the performance Eco option or system reduced-motion settings stop their animations.
+- **Individual toggle**: **Настройки → Halloween Premium → Два страшных скелета**, enabled by default. All existing atmosphere modes and pumpkin icons remain available.
+
+**Install (remove the earlier Halloween plugin first):**
+
+```text
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.2.js
+```
+
+The previous versioned scripts remain intact for rollback. Do not install several Halloween script URLs at the same time.
+
+
 A lightweight, autumn/Halloween-inspired visual theme for **Lampa** on Smart TV (including Samsung Tizen) and browser versions.
 
 ## v1.3.1 fix for Samsung
@@ -15,7 +32,7 @@ Based on real TV feedback: the old atmospheric modes were barely distinguishable
 **New installation URL (remove the older 1.3 URL first):**
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.1.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.2.js
 ```
 
 **Important:** only install *one* Halloween Theme JS file at a time. Keep the previous `halloween-premium-v1.3.js` if you wish to roll back.
@@ -52,11 +69,11 @@ The plugin **does not change the Samsung home-screen/system app icon**. It does 
 
 ## Install / update to v1.3 (Samsung / Tizen)
 
-1. In Lampa open **Настройки → Плагины**, remove the **older Halloween URL** (`halloween-theme.js`, `halloween-premium-v1.1.js`, `halloween-premium-v1.2.js` or `halloween-premium-v1.3.js`). Keeping multiple versions is unsupported: all of them use the same plugin ID.
+1. In Lampa open **Настройки → Плагины**, remove the **older Halloween URL** (`halloween-theme.js`, `halloween-premium-v1.1.js`, `halloween-premium-v1.2.js`, `halloween-premium-v1.3.js` or `halloween-premium-v1.3.1.js`). Keeping multiple versions is unsupported: all of them use the same plugin ID.
 2. Add this single HTTPS URL:
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.1.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.2.js
 ```
 
 3. Fully close and reopen Lampa.
@@ -106,6 +123,7 @@ MIT — see [LICENSE](LICENSE).
 
 ### Changelog
 
+- **1.3.2** — removes sparks/orange square outline, retains rounded violet poster focus, adds two scary skeletons and a visibility toggle.
 - **1.3.1** — visible atmosphere mode palettes, stronger card sparkles, moonlit forest instead of ugly castle/witch.
 - **1.3.0** — Mystic animated background, occasional ghost, enhanced card focus, castle/witch in header and unified search/full/season/dialog styling.
 - **1.2.0** — left menu matches right panel, accessible focus contrast, 4 selectable pumpkins, atmospheric moon/bats/mist with an independent toggle.

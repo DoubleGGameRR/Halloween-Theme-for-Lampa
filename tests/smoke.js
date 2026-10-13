@@ -35,19 +35,25 @@ var context = {window: {appready:true,Lampa:Lampa, console:console}, document:do
 vm.runInNewContext(src, context);
 assert.strictEqual(context.window.plugin_halloween_theme_premium_ready, true);
 assert.strictEqual(settings.components.length, 1, 'Settings section created');
-assert.strictEqual(settings.params.length, 14, '14 settings: visual theme, Mystic decor and performance controls');
+assert.strictEqual(settings.params.length, 15, '15 settings including the skeleton toggle');
 assert.strictEqual(head.children.length, 1, 'CSS added');
-assert.strictEqual(body.children.length, 4, 'Spider, moon/castle header and ambient background added');
+assert.strictEqual(body.children.length, 5, 'Spider, moonlit header, background and skeletons added');
 assert.strictEqual(body.children[2].id, 'hpl-premium-header-scene', 'Top-center header scene created');
 assert.strictEqual(body.children[3].id, 'hpl-mystic-atmosphere', 'Mystic background created');
+assert.strictEqual(body.children[4].id, 'hpl-haunted-skeletons', 'Skeleton container created');
+assert.ok(body.children[4].innerHTML.indexOf('hpl-skeleton--left') >= 0 && body.children[4].innerHTML.indexOf('hpl-skeleton--right') >= 0, 'Two skeletons created');
+assert.ok(body.children[4].innerHTML.indexOf('hpl-skeleton-svg') >= 0, 'Detailed skeleton SVG');
 assert.ok(body.children[2].innerHTML.indexOf('hpl-haunted-header-svg') >= 0, 'Moonlit forest SVG appended');
 assert.ok(body.children[2].innerHTML.indexOf('hpl-forest-fill') >= 0, 'Premium forest silhouette exists');
 assert.strictEqual(body.children[2].innerHTML.indexOf('hpl-header-witch'), -1, 'Old witch graphic removed');
 assert.ok(body.children[3].innerHTML.indexOf('hpl-mystic-ghost-svg') >= 0, 'Ghost SVG appended');
 assert.ok(head.children[0].textContent.indexOf('hpl-magic-enabled .card.focus') >= 0, 'Magical card focus CSS');
-assert.ok(head.children[0].textContent.indexOf('hpl-visible-sparks') >= 0, 'Visible spark animation');
-assert.ok(head.children[0].textContent.indexOf('radial-gradient(circle at 12% 12%') >= 0, 'TV-size visible spark particles');
-assert.ok(head.children[0].textContent.indexOf('overflow:visible!important;outline:.18em') >= 0, 'Sparkle border extends beyond poster');
+assert.strictEqual(head.children[0].textContent.indexOf('hpl-visible-sparks'), -1, 'Spark animation removed');
+assert.strictEqual(head.children[0].textContent.indexOf('hpl-card-spark'), -1, 'Earlier spark CSS removed');
+assert.strictEqual(head.children[0].textContent.indexOf('outline:.18em solid #ff9b30'), -1, 'Orange square outline removed');
+assert.ok(head.children[0].textContent.indexOf('border:.24em solid #b879f5') >= 0, 'Single rounded purple focus');
+assert.ok(head.children[0].textContent.indexOf('border-radius:1.4em!important') >= 0, 'Focus matches rounded movie posters');
+assert.ok(head.children[0].textContent.indexOf('hpl-skeletons-enabled #hpl-haunted-skeletons') >= 0, 'Skeleton visibility toggle CSS');
 assert.ok(head.children[0].textContent.indexOf('[data-hpl-mode="cozy"] .menu') >= 0, 'Warm cozy navigation palette');
 assert.ok(head.children[0].textContent.indexOf('[data-hpl-mode="horror"] .menu') >= 0, 'Blood-red horror navigation palette');
 assert.ok(head.children[0].textContent.indexOf('[data-hpl-mode="mystic"] .menu') >= 0, 'Purple Mystic navigation palette');
@@ -68,7 +74,7 @@ assert.ok(head.children[0].textContent.indexOf('.menu{background:linear-gradient
 assert.ok(head.children[0].textContent.indexOf('.menu__item.focus .menu__text') >= 0, 'Focused menu text stays readable');
 assert.strictEqual(root.attrs['data-hpl-palette'], 'purple');
 assert.strictEqual(root.attrs['data-hpl-mode'], 'mystic', 'Mystic default mood');
-['hpl-atmosphere-enabled','hpl-ghost-enabled','hpl-magic-enabled','hpl-castle-enabled','hpl-windows-enabled'].forEach(function (name) {assert.strictEqual(classes[name], true, 'Feature enabled by default: ' + name);});
+['hpl-atmosphere-enabled','hpl-ghost-enabled','hpl-magic-enabled','hpl-castle-enabled','hpl-windows-enabled','hpl-skeletons-enabled'].forEach(function (name) {assert.strictEqual(classes[name], true, 'Feature enabled by default: ' + name);});
 
 storage.hpl_enabled = false;
 settings.params[0].onChange();
@@ -103,7 +109,7 @@ assert.strictEqual(classes['hpl-header-enabled'], true, 'Header decor toggles on
 handlers.activity[0]();
 assert.strictEqual(logo.children.length, 2, 'Logo is idempotent');
 var paramByName = function (id) {return settings.params.filter(function (x) {return x.param.name === 'hpl_' + id;})[0];};
-[['atmosphere','hpl-atmosphere-enabled'], ['apparitions','hpl-ghost-enabled'], ['magic','hpl-magic-enabled'], ['castle','hpl-castle-enabled'], ['windows','hpl-windows-enabled']].forEach(function (pair) {
+[['atmosphere','hpl-atmosphere-enabled'], ['apparitions','hpl-ghost-enabled'], ['magic','hpl-magic-enabled'], ['castle','hpl-castle-enabled'], ['windows','hpl-windows-enabled'], ['skeletons','hpl-skeletons-enabled']].forEach(function (pair) {
   storage['hpl_' + pair[0]] = false;
   paramByName(pair[0]).onChange();
   assert.strictEqual(classes[pair[1]], false, 'Toggle disabled: ' + pair[0]);
@@ -124,5 +130,5 @@ var paramByName = function (id) {return settings.params.filter(function (x) {ret
 });
 vm.runInNewContext(src, context);
 assert.strictEqual(settings.components.length, 1, 'Bootstrap is idempotent');
-assert.strictEqual(body.children.length, 4, 'No duplicate atmosphere layers');
-console.log('PASS: v1.3.1 visibly distinct modes, TV sparks, moonlit forest, 4 pumpkins, UI styling, toggles and idempotency');
+assert.strictEqual(body.children.length, 5, 'No duplicate atmosphere or skeleton layers');
+console.log('PASS: v1.3.2 violet rounded focus without sparks, two skeletons, palettes, toggles and idempotency');

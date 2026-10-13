@@ -1,5 +1,27 @@
 # 🎃 Halloween Theme for Lampa — Premium Edition
 
+## Halloween Premium 1.3.3 — full-width candy garland and bigger pumpkin logo
+
+A new **wide decoration band inside the Lampa interface**, directly below the TV navigation header:
+
+- Purple cobweb fans on the left and right edges
+- Curved strings of orange lantern lights, wrapped purple/orange sweets, candy corn and a spiral lollipop
+- Tiny hanging jack-o'-lanterns and flying bats
+- Decoration stretches across the whole header strip, rather than occupying only the center
+- Internal top-left jack-o'-lantern logo increased to **143%** of the previous visual size without changing the Samsung home-screen app icon
+- **Настройки → Halloween Premium → Гирлянда, паутина и конфеты сверху** toggles the new ornament independently
+
+The older moon/castle header artwork is automatically hidden while the garland is enabled, so the two drawings don't pile on top of each other. All graphics are inline SVG, no external assets, and the strip has `pointer-events: none` so remote navigation remains unaffected.
+
+**New TV installation URL:**
+
+```text
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.3.js
+```
+
+Remove the old Halloween plugin URL first, add the new one and fully restart Lampa. Keep **only one** Halloween version installed.
+
+
 ## Halloween Premium 1.3.2 — Focus cleanup + scary skeletons
 
 - **No sparkles**: removes both previous CSS sparkle implementations and animation keyframes.
@@ -11,7 +33,7 @@
 **Install (remove the earlier Halloween plugin first):**
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.2.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.3.js
 ```
 
 The previous versioned scripts remain intact for rollback. Do not install several Halloween script URLs at the same time.
@@ -32,7 +54,7 @@ Based on real TV feedback: the old atmospheric modes were barely distinguishable
 **New installation URL (remove the older 1.3 URL first):**
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.2.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.3.js
 ```
 
 **Important:** only install *one* Halloween Theme JS file at a time. Keep the previous `halloween-premium-v1.3.js` if you wish to roll back.
@@ -69,11 +91,11 @@ The plugin **does not change the Samsung home-screen/system app icon**. It does 
 
 ## Install / update to v1.3 (Samsung / Tizen)
 
-1. In Lampa open **Настройки → Плагины**, remove the **older Halloween URL** (`halloween-theme.js`, `halloween-premium-v1.1.js`, `halloween-premium-v1.2.js`, `halloween-premium-v1.3.js` or `halloween-premium-v1.3.1.js`). Keeping multiple versions is unsupported: all of them use the same plugin ID.
+1. In Lampa open **Настройки → Плагины**, remove the **older Halloween URL** (`halloween-theme.js`, `halloween-premium-v1.1.js`, `halloween-premium-v1.2.js`, `halloween-premium-v1.3.js` or `halloween-premium-v1.3.1.js` or `halloween-premium-v1.3.2.js`). Keeping multiple versions is unsupported: all of them use the same plugin ID.
 2. Add this single HTTPS URL:
 
 ```text
-https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.2.js
+https://cdn.jsdelivr.net/gh/DoubleGGameRR/Halloween-Theme-for-Lampa@main/halloween-premium-v1.3.3.js
 ```
 
 3. Fully close and reopen Lampa.
@@ -123,6 +145,7 @@ MIT — see [LICENSE](LICENSE).
 
 ### Changelog
 
+- **1.3.3** — full-width Halloween candy web garland beneath the navigation header, 43% larger pumpkin logo and a separate toggle.
 - **1.3.2** — removes sparks/orange square outline, retains rounded violet poster focus, adds two scary skeletons and a visibility toggle.
 - **1.3.1** — visible atmosphere mode palettes, stronger card sparkles, moonlit forest instead of ugly castle/witch.
 - **1.3.0** — Mystic animated background, occasional ghost, enhanced card focus, castle/witch in header and unified search/full/season/dialog styling.

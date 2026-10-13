@@ -1,6 +1,6 @@
 /*
  * Halloween Theme for Lampa — Premium Edition
- * Version: 1.3.1 | 2026-10-12
+ * Version: 1.3.2 | 2026-10-14
  * A lightweight, ES5-compatible visual theme for Lampa on TVs.
  * No external scripts, fonts, images, tracking or network requests.
  * License: MIT
@@ -14,6 +14,7 @@
   var DECOR_ID = 'hpl-premium-decor';
   var TOP_ID = 'hpl-premium-header-scene';
   var ATM_ID = 'hpl-mystic-atmosphere';
+  var SKELETON_ID = 'hpl-haunted-skeletons';
   var LOGO_CLASS = 'hpl-pumpkin-logo';
   var ROOT_CLASS = 'hpl-premium-on';
   var settingsRegistered = false;
@@ -160,7 +161,6 @@
     'html.hpl-premium-on .settings-folder,html.hpl-premium-on .settings-param{border-radius:.65em;border-color:rgba(190,121,255,.18)}\n' +
     'html.hpl-premium-on .card__view,html.hpl-premium-on .card__img,html.hpl-premium-on .card__image{border-radius:.65em!important}\n' +
     'html.hpl-premium-on .card__view{overflow:hidden;box-shadow:0 .45em 1.4em rgba(0,0,0,.33);transition:box-shadow .19s ease,transform .19s ease}\n' +
-    'html.hpl-premium-on .card.focus .card__view,html.hpl-premium-on .card--focus .card__view,html.hpl-premium-on .card.selector.focus .card__view{box-shadow:0 0 0 .17em var(--hpl-orange),0 0 1.35em var(--hpl-glow),0 .6em 1.5em rgba(0,0,0,.42)!important;transform:translateY(-.14em)}\n' +
     'html.hpl-premium-on .card__title,html.hpl-premium-on .full-start__title{color:#f7f0ff;text-shadow:0 0 .65em rgba(160,85,214,.17)}\n' +
     'html.hpl-premium-on .menu__item.focus,html.hpl-premium-on .menu__item.active{background:linear-gradient(90deg,rgba(162,79,233,.23),rgba(255,132,27,.09))!important;box-shadow:inset .18em 0 var(--hpl-orange)}\n' +
     'html.hpl-premium-on .button.focus,html.hpl-premium-on .button.selector.focus,html.hpl-premium-on .simple-button.focus,html.hpl-premium-on .full-start__button.focus{border-color:var(--hpl-orange)!important;box-shadow:0 0 0 .13em var(--hpl-orange),0 0 1.1em var(--hpl-glow)!important}\n' +
@@ -258,11 +258,6 @@
     "html.hpl-premium-on.hpl-motion:not(.hpl-eco) #hpl-premium-header-scene .hpl-header-witch{animation:hpl-witchfly 19s ease-in-out infinite}\n",
     "@keyframes hpl-witchfly{0%,100%{transform:translate3d(-9px,3px,0);opacity:.55}50%{transform:translate3d(18px,-8px,0);opacity:.93}}\n",
     "html.hpl-premium-on.hpl-eco #hpl-premium-header-scene .hpl-header-bats,html.hpl-premium-on.hpl-eco #hpl-premium-header-scene .hpl-header-mist,html.hpl-premium-on.hpl-eco #hpl-premium-header-scene .hpl-header-witch,html.hpl-premium-on.hpl-eco #hpl-premium-decor .hpl-spider-svg{animation:none!important}\n",
-    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view{box-shadow:0 0 0 .13em #ff982f,0 0 0 .29em rgba(158,72,219,.53),0 0 1.25em rgba(175,85,247,.4),0 0 2.2em rgba(255,116,34,.18)!important}\n",
-    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view:after,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view:after{border:.18em solid rgba(255,177,69,.9)!important;border-radius:.75em!important;box-shadow:0 0 .8em rgba(183,92,243,.34)!important;z-index:1!important;top:0!important;right:0!important;bottom:0!important;left:0!important}\n",
-    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view:before,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view:before{content:\"\";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle at 10% 10%,#ffe3a3 0 1px,transparent 3px),radial-gradient(circle at 90% 14%,#d5a2ff 0 1.4px,transparent 4px),radial-gradient(circle at 83% 88%,#ffd07d 0 1.2px,transparent 4px),radial-gradient(circle at 9% 83%,#dfadff 0 1px,transparent 3px);opacity:.88}\n",
-    "html.hpl-premium-on.hpl-motion.hpl-magic-enabled.hpl-full-effects .card.focus .card__view:before{animation:hpl-card-spark 2.8s ease-in-out infinite}\n",
-    "@keyframes hpl-card-spark{0%,100%{opacity:.65}50%{opacity:1}}\n",
     "html.hpl-premium-on.hpl-windows-enabled .selectbox__content,html.hpl-premium-on.hpl-windows-enabled .modal__content{background:linear-gradient(155deg,#261437 0%,#1c1229 52%,#120e1e 100%)!important;border:1px solid rgba(189,105,249,.28)!important;box-shadow:-1em 0 2em rgba(7,4,15,.36)!important;color:#f9efff}\n",
     "html.hpl-premium-on.hpl-windows-enabled .selectbox-item.focus,html.hpl-premium-on.hpl-windows-enabled .modal__button.focus{color:#fff8ef!important;background:linear-gradient(90deg,rgba(152,62,224,.48),rgba(255,131,27,.21))!important;box-shadow:inset .2em 0 #ff9229!important}\n",
     "html.hpl-premium-on.hpl-windows-enabled .selectbox__title,html.hpl-premium-on.hpl-windows-enabled .modal__title{color:#fff2ff!important;text-shadow:0 0 .5em rgba(184,111,247,.18)}\n",
@@ -316,13 +311,63 @@
     "html.hpl-premium-on[data-hpl-mode=\"cozy\"] .menu__item.focus,html.hpl-premium-on[data-hpl-mode=\"cozy\"] .settings-folder.focus,html.hpl-premium-on[data-hpl-mode=\"cozy\"] .settings-param.focus{box-shadow:inset .2em 0 #ffb567!important}\n",
     "html.hpl-premium-on.hpl-header-enabled.hpl-castle-enabled #hpl-premium-header-scene .hpl-haunted-header-svg{opacity:1!important}\n",
     "html.hpl-premium-on #hpl-premium-header-scene .hpl-haunted-header-svg{overflow:visible}\n",
-    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view{overflow:visible!important;outline:.18em solid #ff9b30!important;outline-offset:.1em;box-shadow:0 0 0 .30em rgba(181,85,248,.73),0 0 1.6em rgba(173,88,255,.62),0 0 2.4em rgba(255,138,25,.34)!important}\n",
-    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view::before,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view::before,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view::before{content:\"\"!important;display:block!important;position:absolute!important;top:-.8em!important;left:-.8em!important;right:-.8em!important;bottom:-.8em!important;z-index:15!important;pointer-events:none!important;opacity:1!important;background:radial-gradient(circle at 12% 12%,#fff8d8 0 3px,#ffae32 5px,transparent 12px),radial-gradient(circle at 90% 11%,#fff6e5 0 3px,#be72ff 5px,transparent 12px),radial-gradient(circle at 86% 91%,#fff7d9 0 3px,#ff9b31 5px,transparent 12px),radial-gradient(circle at 9% 89%,#f9ecff 0 3px,#c68bff 5px,transparent 12px),radial-gradient(circle at 51% 4%,#ffe7a7 0 2px,#c78cff 4px,transparent 9px),radial-gradient(circle at 53% 96%,#fff6ca 0 2px,#f9a042 4px,transparent 9px)!important;box-shadow:none!important;transform:translateZ(0)!important}\n",
-    "html.hpl-premium-on.hpl-magic-enabled.hpl-motion:not(.hpl-eco) .card.focus .card__view::before,html.hpl-premium-on.hpl-magic-enabled.hpl-motion:not(.hpl-eco) .card.selector.focus .card__view::before{animation:hpl-visible-sparks 2.8s ease-in-out infinite!important}\n",
-    "@keyframes hpl-visible-sparks{0%,100%{opacity:.58;filter:brightness(.92)}50%{opacity:1;filter:brightness(1.35)}}\n",
-    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view::after,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view::after{border:.16em solid #d693ff!important;border-radius:.75em!important;inset:0!important;z-index:13!important;box-shadow:0 0 .6em rgba(255,158,52,.8)!important}\n",
-    "html.hpl-premium-on.hpl-eco .card.focus .card__view::before,html.hpl-premium-on.hpl-eco .card.selector.focus .card__view::before{animation:none!important}\n",
-    "@media(prefers-reduced-motion:reduce){html.hpl-premium-on .card.focus .card__view::before{animation:none!important;filter:none!important}}\n"
+  ].join('');
+
+
+  // Two crisp, noninteractive SVG skeletons stay near the screen edges.
+  var skeletonSvg = '' +
+    '<svg class="hpl-skeleton-svg" viewBox="0 0 150 270" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+    '<defs><linearGradient id="hpl-bone-grad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0e1"/><stop offset=".49" stop-color="#d0b9d9"/><stop offset="1" stop-color="#755b87"/></linearGradient></defs>' +
+    '<g stroke="#382244" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">' +
+    '<path d="M54 59Q32 49 33 29Q32 5 75 4Q118 5 118 29Q119 48 99 59L98 73Q90 82 75 81Q58 81 54 71Z" fill="url(#hpl-bone-grad)"/>' +
+    '<path d="M40 32Q53 21 66 33L62 45Q50 49 44 43Z M84 33Q98 21 111 32L107 43Q96 49 90 45Z" fill="#1b0f27"/>' +
+    '<path d="M74 44L66 59L82 59Z" fill="#291529"/>' +
+    '<path d="M55 62L56 72Q74 85 95 72L97 62Z" fill="#d7b5d4"/>' +
+    '<path d="M56 69L96 69M64 69V79M72 69V81M80 69V81M88 69V78" stroke="#26142d" fill="none" stroke-width="2.5"/>' +
+    '<path d="M44 87Q75 78 106 87L114 105L99 114L93 144H57L51 114L36 106Z" fill="#30213a"/>' +
+    '<path d="M75 84V164" stroke="url(#hpl-bone-grad)" stroke-width="8" fill="none"/>' +
+    '<path d="M75 88Q54 79 36 90Q34 99 62 106M75 88Q96 79 114 90Q116 99 88 106" fill="none" stroke="url(#hpl-bone-grad)" stroke-width="7"/>' +
+    '<path d="M75 105Q56 97 39 108Q36 117 63 125M75 105Q94 97 111 108Q114 117 87 125" fill="none" stroke="url(#hpl-bone-grad)" stroke-width="6.5"/>' +
+    '<path d="M75 124Q56 116 47 128Q44 136 64 141M75 124Q94 116 103 128Q106 136 86 141" fill="none" stroke="url(#hpl-bone-grad)" stroke-width="5.5"/>' +
+    '<path d="M41 91L27 116L18 144L24 154M109 91L123 116L132 144L126 154" stroke="url(#hpl-bone-grad)" stroke-width="9" fill="none"/>' +
+    '<path d="M24 154L10 167M24 154L20 177M24 154L31 176M24 154L39 167M126 154L111 165M126 154L121 176M126 154L137 178M126 154L148 168" stroke="#e2cddb" stroke-width="3.2" fill="none"/>' +
+    '<path d="M54 158Q75 149 96 158L91 174Q75 184 59 174Z" fill="url(#hpl-bone-grad)"/>' +
+    '<path d="M62 176L53 210L42 247M88 176L97 210L108 247" stroke="url(#hpl-bone-grad)" stroke-width="11" fill="none"/>' +
+    '<path d="M42 247L28 257L18 262M108 247L122 257L134 262" stroke="#d8bed7" stroke-width="6" fill="none"/>' +
+    '</g><g fill="#ff9e34"><circle cx="53" cy="38" r="3.1"/><circle cx="98" cy="38" r="3.1"/></g>' +
+    '<g fill="#fff0b1"><circle cx="53" cy="37" r="1.1"/><circle cx="98" cy="37" r="1.1"/></g>' +
+    '</svg>';
+
+  function injectSkeletons() {
+    if (!document.body || document.getElementById(SKELETON_ID)) return;
+    var holder = document.createElement('div');
+    holder.id = SKELETON_ID;
+    holder.setAttribute('aria-hidden', 'true');
+    holder.innerHTML = '<div class="hpl-skeleton hpl-skeleton--left">' + skeletonSvg + '</div>' +
+      '<div class="hpl-skeleton hpl-skeleton--right">' + skeletonSvg + '</div>';
+    document.body.appendChild(holder);
+  }
+
+  // Final rounded violet focus + low-cost decorative SVG skeletons.
+  css += [
+    "html.hpl-premium-on .card.focus .card__view,html.hpl-premium-on .card.selector.focus .card__view,html.hpl-premium-on .card--focus .card__view{outline:0!important}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view{border-radius:1em!important;overflow:visible!important;outline:0!important;box-shadow:0 0 .68em rgba(176,93,255,.44)!important}\n",
+    "html.hpl-premium-on.hpl-magic-enabled .card.focus .card__view::after,html.hpl-premium-on.hpl-magic-enabled .card.selector.focus .card__view::after,html.hpl-premium-on.hpl-magic-enabled .card--focus .card__view::after{content:\"\"!important;display:block!important;position:absolute!important;top:-.35em!important;right:-.35em!important;bottom:-.35em!important;left:-.35em!important;border:.24em solid #b879f5!important;border-radius:1.4em!important;box-shadow:0 0 .75em rgba(174,91,247,.56)!important;z-index:3!important;pointer-events:none!important;outline:0!important}\n",
+    "html.hpl-premium-on .card.focus .card__view::before,html.hpl-premium-on .card.selector.focus .card__view::before,html.hpl-premium-on .card--focus .card__view::before{content:none!important;display:none!important;background:none!important;animation:none!important}\n",
+    "html #hpl-haunted-skeletons{display:none;position:fixed;top:0;right:0;bottom:0;left:0;pointer-events:none;z-index:7;overflow:hidden}\n",
+    "html.hpl-premium-on.hpl-skeletons-enabled #hpl-haunted-skeletons{display:block}\n",
+    "html #hpl-haunted-skeletons .hpl-skeleton{position:absolute;width:8.5em;height:15.5em;opacity:.66;pointer-events:none;transform-origin:50% 100%;filter:drop-shadow(0 0 .45em rgba(156,86,225,.31))}\n",
+    "html #hpl-haunted-skeletons .hpl-skeleton-svg{width:100%;height:100%;display:block}\n",
+    "html #hpl-haunted-skeletons .hpl-skeleton--left{left:-3.3em;bottom:8.5%;transform:rotate(13deg)}\n",
+    "html #hpl-haunted-skeletons .hpl-skeleton--right{right:-3.4em;bottom:16%;transform:scaleX(-1) rotate(8deg);opacity:.76}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-eco) #hpl-haunted-skeletons .hpl-skeleton--left{animation:hpl-bones-left 16s ease-in-out infinite}\n",
+    "html.hpl-premium-on.hpl-motion:not(.hpl-eco) #hpl-haunted-skeletons .hpl-skeleton--right{animation:hpl-bones-right 18s ease-in-out infinite}\n",
+    "@keyframes hpl-bones-left{0%,100%{transform:rotate(13deg)}50%{transform:rotate(8deg)}}\n",
+    "@keyframes hpl-bones-right{0%,100%{transform:scaleX(-1) rotate(8deg)}50%{transform:scaleX(-1) rotate(3deg)}}\n",
+    "html.hpl-premium-on body.settings--open #hpl-haunted-skeletons,html.hpl-premium-on body.selectbox--open #hpl-haunted-skeletons,html.hpl-premium-on body.modal--open #hpl-haunted-skeletons{display:none!important}\n",
+    "html.hpl-premium-on.hpl-eco #hpl-haunted-skeletons .hpl-skeleton{animation:none!important}\n",
+    "@media(max-width:950px){html #hpl-haunted-skeletons .hpl-skeleton{width:5.5em;height:10em;opacity:.48}}\n",
+    "@media(prefers-reduced-motion:reduce){html #hpl-haunted-skeletons .hpl-skeleton{animation:none!important}}\n"
   ].join('');
 
   function injectStyle() {
@@ -385,6 +430,7 @@
     root.classList.toggle('hpl-castle-enabled', on && enabled('castle', true));
     root.classList.toggle('hpl-atmosphere-enabled', on && enabled('atmosphere', true));
     root.classList.toggle('hpl-ghost-enabled', on && enabled('apparitions', true));
+    root.classList.toggle('hpl-skeletons-enabled', on && enabled('skeletons', true));
     root.classList.toggle('hpl-magic-enabled', on && enabled('magic', true));
     root.classList.toggle('hpl-windows-enabled', on && enabled('windows', true));
     var mood = get('mode', 'mystic');
@@ -399,6 +445,7 @@
       injectStyle();
       injectDecor();
       injectMysticAtmosphere();
+      injectSkeletons();
       injectLogo();
     }
   }
@@ -482,7 +529,13 @@
       Lampa.SettingsApi.addParam({
         component: 'halloween_premium',
         param: {name: PREFIX + 'magic', type: 'trigger', 'default': true},
-        field: {name: 'Магические карточки', description: 'Двойной контур и искры вокруг выбранного постера.'},
+        field: {name: 'Фиолетовый контур постера', description: 'Скруглённая фиолетовая рамка и мягкое свечение без искр.'},
+        onChange: onChange
+      });
+      Lampa.SettingsApi.addParam({
+        component: 'halloween_premium',
+        param: {name: PREFIX + 'skeletons', type: 'trigger', 'default': true},
+        field: {name: 'Два страшных скелета', description: 'Светящиеся глаза, скелеты по краям экрана. Можно выключить.'},
         onChange: onChange
       });
       Lampa.SettingsApi.addParam({
@@ -523,7 +576,7 @@
         Lampa.Listener.follow('activity', function () { setTimeout(injectLogo, 0); });
       }
     } catch (ignore) {}
-    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.3.1 ready');
+    if (window.console && console.log) console.log('[Halloween Premium] Theme 1.3.2 ready');
   }
 
   function bootstrap() {
